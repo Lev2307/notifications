@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+
+        <h4>{% translate 'Are you sure you want to revoke all notification time stamps' %}?</h4>
+        {% for time in notification_statuses %}
+            <h3>{{ time.time_stamp|date:"H:i:s"  }}, {{ time.time_stamp|date:"d F Y" }}</h3>
+        {% endfor %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit">{% translate 'Revoke' %}</button>
+        </form>
+    </section>
+{% endblock content %}

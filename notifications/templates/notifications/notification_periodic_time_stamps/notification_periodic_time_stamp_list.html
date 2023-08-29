@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+        {% for time in times %}
+            {% if time.done == False %}
+                <h1>
+                    {{ time.time_stamp|date:"H:i:s"  }}, {{ time.time_stamp|date:"d F Y" }} <a href="{% url 'notifications:notification_periodic_revoke_certain_time_stamp' pk=time.id %}">{% translate 'Revoke this timestamp from the notification' %}</a>
+                    {% if user.is_staff %}
+                        <a href="{% url 'notifications:notificate_periodic_notification_only_for_admin' pk=time.id %}">{% translate 'Remind right now' %}</a>
+                    {% endif %}
+                </h1>
+            {% endif %}
+        {% endfor %}
+        <a href="{% url 'notifications:notification_periodic_revoke_all_time_stamps' pk=notification_id %}">{% translate 'Revoke all notification time stamps' %}</a>
+    </section>
+{% endblock content %}

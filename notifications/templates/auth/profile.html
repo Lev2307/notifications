@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %} {{ user.username }} {% endblock title %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <span {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</span >
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div>
+            <h4>{% translate 'You are with us since:' %} {{ user.date_joined|date:"d F Y" }}</h4>
+            <h4>{% translate 'Your categories:' %}</h4>
+            <div class="ms-3 border w-50"> 
+                {% for category in user_notification_categorys %}
+                    {% if category.user != None %}
+                        <div>
+                            <span class="fs-1" style="color: {{ category.color }};">{{ category }}</span>
+                            <a href="{% url 'notification_categories:edit_notification_category' slug=category.slug %}">{% translate 'Edit' %}</a>
+                            <a href="{% url 'notification_categories:delete_notification_category' slug=category.slug %}">{% translate 'Delete' %}</a>
+                        </div>
+                    {% else %}
+                        <div>
+                            <span class="fs-1" style="color: {{ category.color }};">{{ category }}</span>
+                            <span class="fs-6"> ({% translate 'Unfortunately, you cannot change or delete this category, as it is assigned by default.' %})</span>  
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <a class="btn btn-outline-primary m-2" href="{% url 'notification_categories:add_notification_category' %}">{% translate 'Add a new category for notifications' %}</a>
+            <div class="mt-2">
+                {% if user.is_subscribed == False %}
+                    <h4>{% translate 'You are not subscribed yet' %}</h4>
+                {% else %}
+                    <h4>{% translate 'You are subscribed ^-^' %}</h4>
+                {% endif %}
+            </div>
+            <div>
+                <h3>{% translate 'Networks' %}</h3>
+                {% for soc in all_choose_sending %}
+                    {% if soc.linked_network %}
+                        {% if soc.active == True %}
+                            <h6>{{ soc.sender }} <a href="{% url 'auth:sender_information' slug=soc.slug %}">{% translate 'learn more' %}</a>. {% translate 'Notifications will be sent to you' %}<a href="{% url 'auth:activate_sender_network' pk=soc.id %}"><input type="checkbox" value="{{soc.id}}" onclick="window.location.href='{% url 'auth:activate_sender_network' pk=soc.id %}'" checked>{% translate 'on' %}</a></h6>
+                        {% else %}
+                            <h6>{{ soc.sender }} <a href="{% url 'auth:sender_information' slug=soc.slug %}">{% translate 'learn more' %}</a>. {% translate 'Notifications will be NOT sent to you' %}<a href="{% url 'auth:activate_sender_network' pk=soc.id %}"><input type="checkbox" value="{{soc.id}}" onclick="window.location.href='{% url 'auth:activate_sender_network' pk=soc.id %}'">{% translate 'off' %}</a></h6>
+                        {% endif %}
+                    {% else %}
+                        <h5><a href="{% url 'auth:dispetcher_providing_networks' slug=soc.slug %}">{% translate 'Linking' %} {{ soc.sender.lower }}</a></h5>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <aside>
+                {% get_current_language as CURRENT_LANGUAGE %}
+                {% get_available_languages as AVAILABLE_LANGUAGES %}
+                {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                <div class="languages">
+                    <p>{% translate "Language" %}:</p>
+                    <ul class="languages">
+                    {% for language in languages %}
+                        <li>
+                        <a href="/{{ language.code }}/auth/profile/" {% if language.code == CURRENT_LANGUAGE %} class="active text-dark"{% endif %}> {{ language.name_local }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </aside>
+            {{ user.tz }}
+        </div>
+    </section>
+{% endblock %}

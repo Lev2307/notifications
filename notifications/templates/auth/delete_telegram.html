@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %} {% translate 'Detaching telegram account' %} {% endblock title %}
+
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+
+        <p>{% translate 'Are you sure you want to detach the linked telegram' %}?</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit">{% translate 'Detach' %}</button>
+        </form>
+    </section>
+{% endblock content %}

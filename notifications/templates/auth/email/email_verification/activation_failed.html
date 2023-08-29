@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <section>
+        <h1>{% translate 'This link is already outdated' %}</h1>
+        <a href="{% url 'notifications:home' %}">{% translate 'Go back' %}</a>
+    </section>
+{% endblock content %}

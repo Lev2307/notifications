@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %} {% translate 'Editing single notification' %} {% endblock title %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">{% translate 'Edit' %}</button>
+            </form>
+        </div>
+    </section>
+{% endblock content %}

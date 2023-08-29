@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <h1>{% translate 'To continue, you must confirm your email' %}</h1>
+    <h5>{% translate 'We have sent you message on email' %} - {{ email }}</h5>
+{% endblock content %}

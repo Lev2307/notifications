@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+    <section>
+        {% if flag == 'linking' %}
+            <p>{{ username }}, {% translate 'Confirm linking the telegram to account' %} {{ user }}</p>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="type" value="create">
+                <button type="submit">{% translate 'Confirm' %}</button>
+            </form>
+        {% elif flag == 'changing' %}
+            <p>{{ username }}, {% translate 'Confirm changing the linking telegram' %}</p>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="type" value="edit">
+                <button type="submit">{% translate 'Change' %}</button>
+            </form>
+        {% endif %}
+    </section>
+{% endblock content %}

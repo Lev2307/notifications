@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %} {% translate 'Deleting single notification' %} {% endblock title %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <p>{% translate 'Are you sure you want to delete this notification?' %} <a href="{{ notification.get_url_path }}">{{ notification.title }}</a></p>
+                <button type="submit">{% translate 'Delete' %}</button>
+            </form>
+        </div>
+    </section>
+{% endblock content %}

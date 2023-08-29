@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %} {% translate 'Creating single notification' %} {% endblock title %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+
+        {% if only_inactive == user.choose_sending.count %}
+            <h5>{% translate 'Before you can create a notification, you need to connect one of your networks' %}. <a href="{% url 'auth:profile' %}">{% translate 'Connect' %}</a></h5>
+        {% else %}
+            {% if user.is_subscribed or all_notifications < 10 %}
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">{% translate 'Create' %}</button>
+                    </form>
+                </div>
+            {% else %}
+                <h1>{% translate 'To create more notifications, you need to be a sub' %}</h1>
+            {% endif %}
+        {% endif %}
+    </section>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %} {% translate 'Your notifications' %} {% endblock title %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+        <div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a class="btn btn-outline-primary m-2" href="{% url 'notifications:create_notification' %}">{% translate 'Create single notification' %}</a>
+                    <a class="btn btn-outline-primary m-2" href="{% url 'notifications:create_periodical_notification' %}">{% translate 'Create periodic notification' %}</a>
+                    <a class="btn btn-outline-primary m-2" href="{% url 'notifications:notification_archive_list' %}">{% translate 'Your finished notifications' %}</a>
+                </div>
+                <a class="btn btn-outline-primary m-2" href="{% url 'notification_categories:add_notification_category' %}">{% translate 'Add a new category for notifications' %}</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <form class="input-group w-50" action="{% url 'notifications:search_results' %}" method="get">
+                    <input
+                      type="search"
+                      name="q"
+                      placeholder="{% translate 'Search active notifications by title or text...' %}"
+                      class="form-control"
+                      maxlength="350"
+                    />
+                    <button type="submit" class="btn btn-outline-primary">{% translate 'Search' %}</button>
+                  </form>
+            </div>
+            {% if notifications.count >= 1 %}
+                {% for notification in notifications %}
+                    {% if notification.check_all_notifications_are_complited == False %}
+                        {% if notification.notification_type == 'Single' %}
+                            <a href="{{ notification.notification_single.get_url_path }}" class="d-block my-3 text-decoration-none">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"  style="color: {{ notification.notification_single.notification_category.color }}">
+                                            {{ notification.notification_single.notification_category.name_type }}
+                                        </h5>
+                                        <h3 class="card-subtitle text-dark">{{ notification.notification_single.title }}</h3>
+                                        <p class="card-text text-dark">{{ notification.notification_single.text }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% else %}
+                            <a href="{{ notification.notification_periodic.get_url_path }}" class="d-block my-3 text-decoration-none">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="color: {{ notification.notification_periodic.notification_category.color }}">
+                                            {{ notification.notification_periodic.notification_category.name_type }}
+                                        </h5>
+                                        <h3 class="card-text text-dark">{{ notification.notification_periodic.title }}</h3>
+                                        <p class="card-text text-dark">{{ notification.notification_periodic.text }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <h1 class="text-center position-absolute top-50 start-50 translate-middle text-dark fs-2">{% translate 'You don`t have any active notifications yet' %}</h1>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

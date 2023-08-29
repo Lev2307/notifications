@@ -1,0 +1,905 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-29 19:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: authentication/authentication_api/serializers.py:12
+msgid "The two password fields didn’t match."
+msgstr "Два поля пароля не совпадают."
+
+#: authentication/authentication_api/serializers.py:15
+#: authentication/models.py:137
+msgid ""
+"If you don`t know your timezone, please google it! This field is important "
+"for sending notifications correctly."
+msgstr ""
+"Если вы не знаете свой часовой пояс, пожалуйста, прогуглите его! Это поле "
+"важно для корректной отправки оповещений."
+
+#: authentication/authentication_api/serializers.py:16
+#: authentication/models.py:133
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+#: authentication/authentication_api/serializers.py:21
+msgid "Password"
+msgstr "Пароль"
+
+#: authentication/authentication_api/serializers.py:26
+msgid "Password confirmation"
+msgstr "Подтверждение поля"
+
+#: authentication/authentication_api/serializers.py:27
+msgid "Enter the same password as before, for verification."
+msgstr "Введите тот же пароль, что и раньше, для проверки."
+
+#: authentication/authentication_api/serializers.py:47
+#: authentication/forms.py:13
+msgid "This mail already exists"
+msgstr "Эта почта уже существует"
+
+#: authentication/authentication_api/serializers.py:73
+msgid "Access denied: wrong username or password."
+msgstr "Доступ запрещен: неправильное имя пользователя или пароль."
+
+#: authentication/authentication_api/serializers.py:76
+msgid "Both \"username\" and \"password\" are required."
+msgstr "Требуются как \"имя пользователя\", так и \"пароль\"."
+
+#: authentication/forms.py:24
+msgid "Your password"
+msgstr "Ваш пароль"
+
+#: authentication/forms.py:29
+msgid "Your new email"
+msgstr "Ваша новая почта"
+
+#: authentication/forms.py:39
+msgid "Your password is wrong or this email already exists"
+msgstr "Ваш пароль неверен или этот адрес электронной почты уже существует"
+
+#: authentication/models.py:22
+msgid "User`s telegram username"
+msgstr "Имя пользователя в Telegram"
+
+#: authentication/models.py:28
+msgid "Chat id"
+msgstr "Id телеграм чата"
+
+#: authentication/models.py:34
+msgid "Added at"
+msgstr "Добавлено в"
+
+#: authentication/models.py:58
+msgid "Social network"
+msgstr "Социальная сеть"
+
+#: authentication/models.py:62
+msgid "Active"
+msgstr "Активированная"
+
+#: authentication/models.py:66
+msgid "Provided network"
+msgstr "Подключенная сеть"
+
+#: authentication/models.py:70 notification_categories/models.py:22
+msgid "Slug"
+msgstr "Slug"
+
+#: authentication/models.py:92
+msgid "Enter an email address"
+msgstr "Введите адрес электронной почты"
+
+#: authentication/models.py:118
+msgid "Subscribed"
+msgstr "Подписан"
+
+#: authentication/models.py:123
+msgid "Social networks"
+msgstr "Социальные сети"
+
+#: authentication/models.py:130
+msgid "User tg"
+msgstr "Пользовательский tg"
+
+#: authentication/models.py:145
+msgid "study"
+msgstr "обучение"
+
+#: authentication/models.py:146
+msgid "work"
+msgstr "работа"
+
+#: authentication/models.py:147
+msgid "sport"
+msgstr "спорт"
+
+#: authentication/views.py:53
+msgid "Your email has been successfully confirmed!"
+msgstr "Ваш адрес электронной почты был успешно подтвержден!"
+
+#: authentication/views.py:136
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: config/settings.py:147
+msgid "Russian"
+msgstr "Русский"
+
+#: config/settings.py:148
+msgid "English"
+msgstr "Английский"
+
+#: config/settings.py:149
+msgid "Spanish"
+msgstr "Испанский"
+
+#: config/settings.py:150
+msgid "French"
+msgstr "Французский"
+
+#: config/settings.py:151
+msgid "German"
+msgstr "Немецкий"
+
+#: config/settings.py:156
+msgid "UTC 00:00 ( for example Reykjavik, Lisbon )"
+msgstr "UTC 00:00 ( например, Рейкьявик, Лиссабон )"
+
+#: config/settings.py:157
+msgid "UTC +01:00 ( for example, London, Dublin )"
+msgstr "UTC +01:00 ( например, Лондон, Дублин )"
+
+#: config/settings.py:158
+msgid "UTC +02:00 ( for example, Kaliningrad, Berlin, Paris, Warsaw, Zagreb )"
+msgstr "UTC +02:00 ( например, Калининград, Берлин, Париж, Варшава, Загреб )"
+
+#: config/settings.py:159
+msgid ""
+"UTC +03:00 ( for example, Moscow, Riga, Saint Petersburg, Minsk, Volgograd, "
+"Kirov )"
+msgstr ""
+"UTC +03:00 ( например, Москва, Рига, Санкт-Петербург, Минск, Волгоград, "
+"Киров )"
+
+#: config/settings.py:160
+msgid "UTC +04:00 ( for example, Baku, Tbilisi, Yerevan, Samara, Ulyanovsk )"
+msgstr "UTC +04:00 ( например, Баку, Тбилиси, Ереван, Самара, Ульяновск )"
+
+#: config/settings.py:161
+msgid "UTC +04:30 ( for example, Kabul )"
+msgstr "UTC +04:30 ( например, Кабул )"
+
+#: config/settings.py:162
+msgid "UTC +05:00 ( for example, Yekaterinburg, Tashkent )"
+msgstr "UTC +05:00 ( например, Екатеринбург, Ташкент )"
+
+#: config/settings.py:163
+msgid "UTC +06:00 ( for example, Almaty, Omsk, Bishkek )"
+msgstr "UTC +06:00 ( например, Алматы, Омск, Бишкек )"
+
+#: config/settings.py:164
+msgid ""
+"UTC +07:00 ( for example, Novosibirsk, Krasnoyarsk, Novokuznetsk, Bangkok, "
+"Hanoi, Jakarta )"
+msgstr ""
+"UTC +07:00 ( например, Новосибирск, Красноярск, Новокузнецк, Бангкок, Ханой, "
+"Джакарта )"
+
+#: config/settings.py:165
+msgid "UTC +08:00 ( for example, Irkutsk, Beijing, Hong Kong, Singapore )"
+msgstr "UTC +08:00 ( например, Иркутск, Пекин, Гонконг, Сингапур )"
+
+#: config/settings.py:166
+msgid "UTC +09:00 ( for example, Yakutsk, Tokyo, Osaka )"
+msgstr "UTC +09:00 ( например, Якутск, Токио, Осака )"
+
+#: config/settings.py:167
+msgid "UTC +10:00 ( for example, Vladivostok, Canberra, Melbourne, Sydney )"
+msgstr "UTC +10:00 ( например, Владивосток, Канберра, Мельбурн, Сидней )"
+
+#: config/settings.py:168
+msgid "UTC +11:00 ( for example, Magadan, Solomon Islands, New Caledonia )"
+msgstr "UTC +11:00 ( например, Магадан, Соломоновы острова, Новая Каледония )"
+
+#: config/settings.py:169
+msgid "UTC +12:00 ( for example, Fiji Islands, Kamchatka, Marshall Islands )"
+msgstr "UTC +12:00 ( например, острова Фиджи, Камчатка, Маршалловы острова )"
+
+#: config/settings.py:170
+msgid "UTC -05:00 ( Eastern US )"
+msgstr "UTC -05:00 ( Восточная часть США )"
+
+#: config/settings.py:171
+msgid "UTC -06:00 ( for example, Central America )"
+msgstr "UTC -06:00 ( например, Центральная Америка )"
+
+#: config/settings.py:172
+msgid "UTC -07:00 ( for example, Arizona )"
+msgstr "UTC -07:00 ( например, Аризона )"
+
+#: config/settings.py:173
+msgid "UTC -08:00 ( for example, Alaska )"
+msgstr "UTC -08:00 ( например, Аляска )"
+
+#: config/settings.py:174
+msgid "UTC -10:00 ( for example, Hawaii )"
+msgstr "UTC -10:00 ( например, Гавайи )"
+
+#: notification_categories/forms.py:12 notification_categories/forms.py:32
+#: notification_categories/models.py:15
+msgid "Category name"
+msgstr "Название категории"
+
+#: notification_categories/forms.py:25 notification_categories/forms.py:45
+msgid ""
+"Choose a different color or a different name for the notification type as it "
+"already exists"
+msgstr ""
+"Выберите другой цвет или другое название для типа оповещения, поскольку оно "
+"уже существует"
+
+#: notification_categories/models.py:12 notifications/models.py:84
+msgid "User"
+msgstr "Пользователь"
+
+#: notification_categories/models.py:19
+msgid "Color"
+msgstr "Цвет"
+
+#: notifications/forms.py:15 notifications/forms.py:41
+#: notifications/forms.py:69 notifications/forms.py:104
+#: notifications/models.py:129 notifications/models.py:203
+#: notifications/send_notifications.py:18
+msgid "Category"
+msgstr "Категория"
+
+#: notifications/forms.py:16 notifications/forms.py:42
+#: notifications/models.py:214
+msgid "Date"
+msgstr "Дата"
+
+#: notifications/forms.py:17 notifications/forms.py:43
+#: notifications/models.py:149 notifications/models.py:218
+#: notifications/send_notifications.py:21
+msgid "Time"
+msgstr "Время"
+
+#: notifications/forms.py:38 notifications/forms.py:66
+#: notifications/notifications_api/serializers.py:36
+msgid "Notification date cannot be in the past!!!"
+msgstr "Дата оповещения не может быть в прошлом!!!"
+
+#: notifications/forms.py:70 notifications/forms.py:105
+#: notifications/models.py:145
+msgid "Number of repetitions"
+msgstr "Количество повторений"
+
+#: notifications/forms.py:90 notifications/forms.py:126
+#: notifications/notifications_api/serializers.py:51
+msgid "If you want to enter your dates, you should choose `Your own dates`"
+msgstr ""
+"Если вы хотите ввести свои даты, вам следует выбрать `Ваши собственные даты`"
+
+#: notifications/forms.py:93 notifications/forms.py:129
+msgid ""
+"If you`ve chosen `Your own dates`, please enter your dates in the field "
+"`your own dates`"
+msgstr ""
+"Если вы хотите ввести свои даты, вам следует выбрать `Ваши собственные даты`"
+
+#: notifications/forms.py:99 notifications/forms.py:135
+#: notifications/notifications_api/serializers.py:60
+msgid "ENTER DATES IN APPROPRIATE FORMAT"
+msgstr "ВВЕДИТЕ ДАТЫ В СООТВЕТСТВУЮЩЕМ ФОРМАТЕ"
+
+#: notifications/forms.py:101 notifications/forms.py:137
+#: notifications/notifications_api/serializers.py:63
+msgid ""
+"This date {date.date()} is too late. Please enter a date no later than 2040 "
+"year =3"
+msgstr ""
+"Эта дата {date.date()} слишком поздняя. Пожалуйста, введите дату не позднее "
+"2040 года =3"
+
+#: notifications/models.py:46
+msgid "Celery id"
+msgstr "Id селери таска"
+
+#: notifications/models.py:49
+msgid "Time stamp"
+msgstr "Отметка времени оповещения"
+
+#: notifications/models.py:54 notifications/models.py:141
+#: notifications/models.py:225
+msgid "Status"
+msgstr "Статус"
+
+#: notifications/models.py:87
+msgid "Created at"
+msgstr "Создано в"
+
+#: notifications/models.py:94
+msgid "Tasks"
+msgstr "Таски"
+
+#: notifications/models.py:97
+msgid "Notification"
+msgstr "Оповещение"
+
+#: notifications/models.py:132 notifications/models.py:206
+#: notifications/send_notifications.py:19
+msgid "Title"
+msgstr "Заголовок"
+
+#: notifications/models.py:136 notifications/models.py:210
+#: notifications/send_notifications.py:20
+msgid "Text"
+msgstr "Текст"
+
+#: notifications/models.py:158 notifications/models.py:233
+msgid "Notification type"
+msgstr "Тип оповещения"
+
+#: notifications/models.py:162
+msgid "Dates"
+msgstr "Даты"
+
+#: notifications/notifications_api/api_views.py:102
+#: notifications/notifications_api/api_views.py:217
+msgid "You are not the author of this notification"
+msgstr "Вы не являетесь автором этого оповещения"
+
+#: notifications/notifications_api/serializers.py:45
+msgid ""
+"Enter dates in appropriate format (yyyy-mm-dd), for example, "
+"2023-08-15,2023-12-15 without any spaces!!!!!!!!"
+msgstr ""
+"Введите даты в соответствующем формате (год-месяц-день), например, "
+"2023-08-15,2023-12-15 без пробелов!!!!!!!!"
+
+#: notifications/notifications_api/serializers.py:54
+msgid ""
+"If you`ve chosen `your own dates`, please enter your dates in the field "
+"`dates`"
+msgstr ""
+"Если вы хотите ввести свои даты, вам следует выбрать `Ваши собственные даты`"
+
+#: notifications/notifications_api/serializers.py:66
+msgid ""
+"This date {date.date()} should be in the future (not in the past and present "
+"=/ ) =3"
+msgstr ""
+"Эта дата {date.date()} должна быть в будущем (не в прошлом и сейчас =/ ) =3"
+
+#: notifications/send_notifications.py:17
+msgid "👋 Hi, you have received a new notification!"
+msgstr "👋 Привет, вы получили новое оповещение!"
+
+#: notifications/send_notifications.py:47
+#: notifications/send_notifications.py:64
+msgid "New notification"
+msgstr "Новое оповещение"
+
+#: templates/auth/accept_telegram_user_registration.html:9
+msgid "Confirm linking the telegram to account"
+msgstr "Подтвердите привязку телеграма к аккаунту"
+
+#: templates/auth/accept_telegram_user_registration.html:13
+#: templates/auth/email/reset_password/reset_password.html:14
+msgid "Confirm"
+msgstr "Подтверждение"
+
+#: templates/auth/accept_telegram_user_registration.html:16
+msgid "Confirm changing the linking telegram"
+msgstr "Подтвердите изменение привязанного telegram"
+
+#: templates/auth/accept_telegram_user_registration.html:20
+msgid "Change"
+msgstr "Изменить"
+
+#: templates/auth/change_user_email.html:5
+#: templates/auth/change_user_email.html:10
+msgid "Changing mail"
+msgstr "Смена почты"
+
+#: templates/auth/change_user_email.html:15
+msgid "Change mail"
+msgstr "Сменить почту"
+
+#: templates/auth/change_user_email.html:20
+msgid "You need to purchase a subscription to change your mail"
+msgstr "Вам необходимо приобрести подписку, чтобы изменить свою почту"
+
+#: templates/auth/delete_telegram.html:5
+msgid "Detaching telegram account"
+msgstr "Отключение телеграм аккаунта"
+
+#: templates/auth/delete_telegram.html:12
+msgid "Are you sure you want to detach the linked telegram"
+msgstr "Вы уверены, что хотите отключить привязанный telegram"
+
+#: templates/auth/delete_telegram.html:15
+msgid "Detach"
+msgstr "Отключить"
+
+#: templates/auth/email/email_verification/activation_failed.html:7
+#: templates/auth/email/reset_password/reset_password_confirm.html:17
+msgid "This link is already outdated"
+msgstr "Эта ссылка уже устарела"
+
+#: templates/auth/email/email_verification/activation_failed.html:8
+msgid "Go back"
+msgstr "Вернуться"
+
+#: templates/auth/email/email_verification/verificate_email_page.html:6
+msgid "To continue, you must confirm your email"
+msgstr "Чтобы продолжить, вы должны подтвердить свою почту"
+
+#: templates/auth/email/email_verification/verificate_email_page.html:7
+msgid "We have sent you message on email"
+msgstr "Мы отправили вам сообщение на почту"
+
+#: templates/auth/email/reset_password/reset_password.html:5
+#: templates/auth/email/reset_password/reset_password.html:8
+msgid "Forgot your password"
+msgstr "Забыли свой пароль"
+
+#: templates/auth/email/reset_password/reset_password.html:9
+msgid ""
+"Enter your email address and we will send you instructions on how to restore "
+"your account"
+msgstr ""
+"Введите свю почту, и мы вышлем вам инструкции о том, как восстановить вашу "
+"учетную запись"
+
+#: templates/auth/email/reset_password/reset_password_complete.html:5
+#: templates/auth/email/reset_password/reset_password_complete.html:8
+msgid "You have successfully reset your password"
+msgstr "Вы успешно сбросили свой пароль"
+
+#: templates/auth/email/reset_password/reset_password_complete.html:9
+msgid "Your new password has been set"
+msgstr "Ваш новый пароль установлен"
+
+#: templates/auth/email/reset_password/reset_password_complete.html:9
+msgid "You can log in to your account"
+msgstr "Вы можете войти в свою учетную запись"
+
+#: templates/auth/email/reset_password/reset_password_complete.html:9
+msgid "log in"
+msgstr "войти"
+
+#: templates/auth/email/reset_password/reset_password_confirm.html:5
+#: templates/auth/email/reset_password/reset_password_confirm.html:10
+msgid "Enter a new password"
+msgstr "Введите новый пароль"
+
+#: templates/auth/email/reset_password/reset_password_confirm.html:14
+msgid "Change my password"
+msgstr "Смена моего пароля"
+
+#: templates/auth/email/reset_password/reset_password_confirm.html:17
+msgid "Go back to the login page"
+msgstr "Вернитесь на страницу входа"
+
+#: templates/auth/email/reset_password/reset_password_done.html:5
+msgid "We have sent you an email"
+msgstr "Мы отправили вам письмо на почту"
+
+#: templates/auth/email/reset_password/reset_password_done.html:8
+msgid "Check your email"
+msgstr "Проверьте свою почту"
+
+#: templates/auth/email/reset_password/reset_password_done.html:9
+msgid ""
+"We have sent you an email with instructions on how to reset your password. "
+"You should answer it as soon as possible"
+msgstr ""
+"Мы отправили вам письмо с инструкциями о том, как сбросить ваш пароль. Вы "
+"должны ответить на него как можно скорее"
+
+#: templates/auth/login.html:5
+msgid "Login Page"
+msgstr "Страница входа"
+
+#: templates/auth/login.html:16
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+#: templates/auth/login.html:18 templates/misc/includes/navbar.html:13
+msgid "Log in"
+msgstr "Войти"
+
+#: templates/auth/login.html:20
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: templates/auth/profile.html:17
+msgid "You are with us since:"
+msgstr "Вы с нами с:"
+
+#: templates/auth/profile.html:18
+msgid "Your categories:"
+msgstr "Ваши категории:"
+
+#: templates/auth/profile.html:24
+#: templates/notifications/CUD_notifications/edit_notification.html:14
+#: templates/notifications/CUD_notifications/edit_notification_periodic.html:25
+#: templates/notifications/detail/notification_periodic_detail.html:17
+#: templates/notifications/detail/notification_single_detail.html:17
+msgid "Edit"
+msgstr "Отредактировать"
+
+#: templates/auth/profile.html:25
+#: templates/notification_categories/delete_notification_category.html:14
+#: templates/notifications/CUD_notifications/delete_notification_periodic.html:14
+#: templates/notifications/CUD_notifications/delete_single_notification.html:14
+#: templates/notifications/detail/notification_periodic_detail.html:19
+#: templates/notifications/detail/notification_single_detail.html:19
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/auth/profile.html:30
+msgid ""
+"Unfortunately, you cannot change or delete this category, as it is assigned "
+"by default."
+msgstr ""
+"К сожалению, вы не можете изменить или удалить эту категорию, так как она "
+"назначена по умолчанию."
+
+#: templates/auth/profile.html:35
+#: templates/notifications/notification_lists/notification_list.html:17
+msgid "Add a new category for notifications"
+msgstr "Добавить новую категорию для оповещений"
+
+#: templates/auth/profile.html:38
+msgid "You are not subscribed yet"
+msgstr "Вы еще не подписаны"
+
+#: templates/auth/profile.html:40
+msgid "You are subscribed ^-^"
+msgstr "Вы подписаны ^-^"
+
+#: templates/auth/profile.html:44
+msgid "Networks"
+msgstr "Социальные сети"
+
+#: templates/auth/profile.html:48 templates/auth/profile.html:50
+msgid "learn more"
+msgstr "узнать больше"
+
+#: templates/auth/profile.html:48
+msgid "Notifications will be sent to you"
+msgstr "Вам будут отправлены оповещения"
+
+#: templates/auth/profile.html:48
+msgid "on"
+msgstr "включено"
+
+#: templates/auth/profile.html:50
+msgid "Notifications will be NOT sent to you"
+msgstr "Оповещения вам отправляться НЕ будут"
+
+#: templates/auth/profile.html:50
+msgid "off"
+msgstr "выключено"
+
+#: templates/auth/profile.html:53
+msgid "Linking"
+msgstr "Подключить"
+
+#: templates/auth/profile.html:62
+msgid "Language"
+msgstr "Язык"
+
+#: templates/auth/registration.html:4
+msgid "Registration Page"
+msgstr "Регистрация"
+
+#: templates/auth/registration.html:12
+msgid "Create account"
+msgstr "Создать учетную запись"
+
+#: templates/auth/sender_information.html:5
+msgid "Sender information"
+msgstr "Информация об отправителе"
+
+#: templates/auth/sender_information.html:13
+msgid "Your linked telegram"
+msgstr "Ваш привязанный телеграм"
+
+#: templates/auth/sender_information.html:14
+msgid "wad added in"
+msgstr "был добавлен в"
+
+#: templates/auth/sender_information.html:15
+msgid "Detach telegram"
+msgstr "Отключить телеграм"
+
+#: templates/auth/sender_information.html:17
+msgid "Your linked email"
+msgstr "Ваша привязанная почта"
+
+#: templates/auth/sender_information.html:18
+msgid "Change e-mail"
+msgstr "Изменить почту"
+
+#: templates/auth/telegram_is_already_used.html:5
+#: templates/auth/telegram_is_already_used.html:9
+msgid "This telegram account is already linked!"
+msgstr "Этот телеграм уже привязан!"
+
+#: templates/auth/telegram_is_already_used.html:9
+msgid "Back to profile page"
+msgstr "Вернуться на страницу профиля"
+
+#: templates/misc/includes/navbar.html:8
+msgid "List of your notifications"
+msgstr "Список ваших оповещений"
+
+#: templates/misc/includes/navbar.html:10
+msgid "Log out"
+msgstr "Выйти"
+
+#: templates/misc/includes/navbar.html:12
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/notification_categories/add_new_notification_category.html:5
+msgid "Create a new notification category"
+msgstr "Создайте новую категорию оповещений"
+
+#: templates/notification_categories/add_new_notification_category.html:14
+msgid "Create category"
+msgstr "Создать категорию"
+
+#: templates/notification_categories/delete_notification_category.html:5
+msgid "Deleting notification category"
+msgstr "Удаление категории оповещений"
+
+#: templates/notification_categories/delete_notification_category.html:11
+msgid "Are you sure you want to delete this notification category"
+msgstr "Вы уверены, что хотите удалить эту категорию оповещений"
+
+#: templates/notification_categories/edit_notification_category.html:5
+msgid "Editing notification category"
+msgstr "Редактирование категории оповещений"
+
+#: templates/notification_categories/edit_notification_category.html:14
+msgid "Edit category"
+msgstr "Изменить категорию"
+
+#: templates/notifications/CUD_notifications/create_notification.html:4
+msgid "Creating single notification"
+msgstr "Создание одиночного оповещения"
+
+#: templates/notifications/CUD_notifications/create_notification.html:11
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:12
+msgid ""
+"Before you can create a notification, you need to connect one of your "
+"networks"
+msgstr ""
+"Прежде чем вы сможете создать оповещение, вам необходимо подключить одну из "
+"ваших социальных сетей"
+
+#: templates/notifications/CUD_notifications/create_notification.html:11
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:12
+msgid "Connect"
+msgstr "Подключить"
+
+#: templates/notifications/CUD_notifications/create_notification.html:18
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:30
+msgid "Create"
+msgstr "Создать"
+
+#: templates/notifications/CUD_notifications/create_notification.html:22
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:34
+msgid "To create more notifications, you need to be a sub"
+msgstr "Чтобы создавать больше оповещений, вам нужно быть подписчиком"
+
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:4
+msgid "Creating periodic notification"
+msgstr "Создание периодичного оповещения"
+
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:22
+#: templates/notifications/CUD_notifications/edit_notification_periodic.html:17
+msgid "Every day"
+msgstr "Каждый день"
+
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:26
+#: templates/notifications/CUD_notifications/edit_notification_periodic.html:21
+msgid "Your own dates"
+msgstr "Ваши собственные даты"
+
+#: templates/notifications/CUD_notifications/delete_notification_periodic.html:5
+msgid "Deleting periodic notification"
+msgstr "Удаление периодичного оповещения"
+
+#: templates/notifications/CUD_notifications/delete_notification_periodic.html:13
+#: templates/notifications/CUD_notifications/delete_single_notification.html:13
+msgid "Are you sure you want to delete this notification?"
+msgstr "Вы уверены, что хотите удалить это оповещение?"
+
+#: templates/notifications/CUD_notifications/delete_single_notification.html:5
+msgid "Deleting single notification"
+msgstr "Удаление одиночного оповещения"
+
+#: templates/notifications/CUD_notifications/edit_notification.html:5
+msgid "Editing single notification"
+msgstr "Редактирование одиночного оповещения"
+
+#: templates/notifications/CUD_notifications/edit_notification_periodic.html:5
+msgid "Editing periodic notification"
+msgstr "Редактирование периодичного оповещения"
+
+#: templates/notifications/detail/notification_periodic_detail.html:5
+msgid "Periodic notification"
+msgstr "Периодичное оповещение"
+
+#: templates/notifications/detail/notification_periodic_detail.html:27
+msgid "You were reminded "
+msgstr "Вам напомнили"
+
+#: templates/notifications/detail/notification_periodic_detail.html:27
+#: templates/notifications/detail/notification_periodic_detail.html:38
+msgid "times"
+msgstr "раз(-а)"
+
+#: templates/notifications/detail/notification_periodic_detail.html:38
+msgid "Remain to be reminded"
+msgstr "Осталось напомнить"
+
+#: templates/notifications/detail/notification_periodic_detail.html:38
+msgid "Your notification time stamps"
+msgstr "Временные метки вашего оповещения"
+
+#: templates/notifications/detail/notification_periodic_detail.html:40
+msgid "0 active time stamps are left"
+msgstr "осталось 0 активных временных меток"
+
+#: templates/notifications/detail/notification_periodic_detail.html:45
+msgid "Your notification revoked time stamps"
+msgstr "Отменённые временные метки вашего оповещения"
+
+#: templates/notifications/detail/notification_periodic_detail.html:47
+msgid "Make active"
+msgstr "Активизировать"
+
+#: templates/notifications/detail/notification_single_detail.html:5
+msgid "Single notification"
+msgstr "Одиночное оповещение"
+
+#: templates/notifications/detail/notification_single_detail.html:28
+msgid "You were reminded in"
+msgstr "Вам напомнили в"
+
+#: templates/notifications/detail/notification_single_detail.html:30
+msgid "Notification execution time"
+msgstr "Время исполнения оповещения"
+
+#: templates/notifications/detail/notification_single_detail.html:33
+#: templates/notifications/notification_periodic_time_stamps/notification_periodic_time_stamp_list.html:13
+msgid "Remind right now"
+msgstr "Напомнить прямо сейчас"
+
+#: templates/notifications/notification_lists/notification_finished_list.html:37
+msgid "You don`t have any finished notifications."
+msgstr "У вас нет никаких завершенных оповещений."
+
+#: templates/notifications/notification_lists/notification_list.html:5
+msgid "Your notifications"
+msgstr "Ваши оповещения"
+
+#: templates/notifications/notification_lists/notification_list.html:13
+msgid "Create single notification"
+msgstr "Создать одиночное оповещение"
+
+#: templates/notifications/notification_lists/notification_list.html:14
+msgid "Create periodic notification"
+msgstr "Создать периодичное оповещение"
+
+#: templates/notifications/notification_lists/notification_list.html:15
+msgid "Your finished notifications"
+msgstr "Ваши завершенные оповещения"
+
+#: templates/notifications/notification_lists/notification_list.html:24
+msgid "Search active notifications by title or text..."
+msgstr "Найти активные оповещения по названию или тексту..."
+
+#: templates/notifications/notification_lists/notification_list.html:28
+msgid "Search"
+msgstr "Найти"
+
+#: templates/notifications/notification_lists/notification_list.html:62
+msgid "You don`t have any active notifications yet"
+msgstr "У вас нет никаких активных оповещений."
+
+#: templates/notifications/notification_periodic_time_stamps/notification_periodic_time_stamp_list.html:11
+msgid "Revoke this timestamp from the notification"
+msgstr "Отменить эту отметку времени у оповещения"
+
+#: templates/notifications/notification_periodic_time_stamps/notification_periodic_time_stamp_list.html:18
+msgid "Revoke all notification time stamps"
+msgstr "Отменить все временные метки оповещения"
+
+#: templates/notifications/notification_periodic_time_stamps/remove_notification_periodic_all_times_page.html:9
+msgid "Are you sure you want to revoke all notification time stamps"
+msgstr "Вы уверены, что хотите отменить все временные метки оповещения"
+
+#: templates/notifications/notification_periodic_time_stamps/remove_notification_periodic_all_times_page.html:15
+#: templates/notifications/notification_periodic_time_stamps/remove_notification_periodic_time_stamp_detail.html:12
+msgid "Revoke"
+msgstr "Отменить"
+
+#: templates/notifications/notification_periodic_time_stamps/remove_notification_periodic_time_stamp_detail.html:9
+msgid "Are you sure you want to revoke this notification time stamp"
+msgstr "Вы уверены, что хотите отменить эту временную метку оповещения"
+
+#: templates/notifications/search/search.html:12
+msgid "Were found"
+msgstr "Было найдено"
+
+#: templates/notifications/search/search.html:12
+msgid "active notification(-s) by request "
+msgstr "активное(-ых) оповещение(-ий) по запросу"
+
+#: templates/notifications/search/search.html:51
+msgid "Nothing found for your request"
+msgstr "По вашему запросу ничего не найдено"
+
+#: templates/notifications/search/search.html:52
+msgid "Get back for your active notifications page"
+msgstr "Вернуться на страницу своих активных оповещений"
+
+#, fuzzy, python-brace-format
+#~| msgid ""
+#~| "👋 Hi, {user}, you have received a new notification, \n"
+#~| "Notification category: {notification_periodicity."
+#~| "notification_category}, \n"
+#~| "Notification title: {notification_periodicity.title}, \n"
+#~| "Notification text: {notification_periodicity.text}, \n"
+#~| "Notification execution time: {time_stamp}"
+#~ msgid ""
+#~ "👋 Hi, {user}, you have received a new notification, \n"
+#~ "Category: {notification_periodicity.notification_category}, \n"
+#~ "Title: {notification_periodicity.title}, \n"
+#~ "Text: {notification_periodicity.text}, \n"
+#~ "Time: {time_stamp}"
+#~ msgstr ""
+#~ "👋 Привет, {user}, вам пришло новое оповещение, \n"
+#~ "Категория: {notification_periodicity.notification_category}, \n"
+#~ "Заголовок: {notification_periodicity.title}, \n"
+#~ "Текст: {notification_periodicity.text}, \n"
+#~ "Время исполнения: {time_stamp}"
+
+#, python-brace-format
+#~ msgid ""
+#~ "👋 Hi, {user}, you have received a new notification,\n"
+#~ "Notification category: {notification_single.notification_category}, \n"
+#~ "Notification title: {notification_single.title}, \n"
+#~ "Notification text: {notification_single.text}, \n"
+#~ "Notification execution time: {time}"
+#~ msgstr ""
+#~ "👋 Привет, {user}, вам пришло новое оповещение, \n"
+#~ "Категория: {notification_periodicity.notification_category}, \n"
+#~ "Заголовок: {notification_periodicity.title}, \n"
+#~ "Текст: {notification_periodicity.text}, \n"
+#~ "Время исполнения: {time_stamp}"

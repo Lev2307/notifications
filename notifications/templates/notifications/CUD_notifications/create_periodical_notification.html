@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %} {% translate 'Creating periodic notification' %} {% endblock title %}
+
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+
+        {% if only_inactive == user.choose_sending.count %}
+            <h5>{% translate 'Before you can create a notification, you need to connect one of your networks' %}. <a href="{% url 'auth:profile' %}">{% translate 'Connect' %}</a></h5>
+        {% else %}
+            {% if user.is_subscribed or all_notifications < 10 %}
+                    <div>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="dates_type">
+                                <div>
+                                    <input type="radio" name="dates_type" id="every_day" onchange="check()" value="Every day" checked>
+                                    <span>{% translate 'Every day' %}</span>
+                                </div>
+                                <div>
+                                    <input type="radio" name="dates_type" id="user_dates" onchange="check()" value="Your own dates">
+                                    <span>{% translate 'Your own dates' %}</span>
+                                    <input id="input_dates" class="d-none" type="text" name="dates" autocomplete="off">
+                                </div>
+                            </div>
+                            <button class="mt-3" type="submit">{% translate 'Create' %}</button>
+                        </form>
+                    </div>
+            {% else %}
+                <h1>{% translate 'To create more notifications, you need to be a sub' %}</h1>
+            {% endif %}
+        {% endif %}
+    </section>
+{% endblock content %}
+
+{% block script %}
+    <script>
+        let notification_time = document.getElementById('id_notification_periodicity_num');
+        let label_notif_periodic = document.querySelector('label[for=id_notification_periodicity_num]')
+        let every_day = document.getElementById('every_day');
+        let user_dates = document.getElementById('user_dates');
+        let input_dates = document.getElementById('input_dates');
+        let times = document.querySelector('.times');
+        const today = new Date()
+        let tomorrow =  new Date()
+        tomorrow.setDate(today.getDate())
+
+        function check() {
+            let every_day = document.getElementById('every_day');
+            let user_dates = document.getElementById('user_dates');
+            if(every_day.checked) {
+                label_notif_periodic.style.display = 'inline-block'
+                notification_time.style.display = 'inline-block';
+                input_dates.className = 'd-none'
+                datepicker = null;
+            } else if (user_dates.checked) {
+                label_notif_periodic.style.display = 'none';
+                notification_time.style.display = 'none';
+                input_dates.className = 'd-inline'
+                let elem = document.querySelector('input[name="dates"]');
+                let datepicker = new Datepicker(elem, {
+                    maxNumberOfDates: 15,
+                    minDate: tomorrow,
+                    format: 'yyyy-mm-dd'
+                }); 
+            }
+        }
+    </script>
+{% endblock script %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% translate 'Periodic notification' %} - {{ notification_periodic_detail.title }} {% endblock title %}
+
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=notification_periodic_detail.notification_type_periodicity.user %}
+        <div class="card position-absolute top-50 start-50 translate-middle">
+            <div class="card-body">
+                <div class="card-title d-flex justify-content-between align-items-center">
+                    <h5 style='color: {{ notification_periodic_detail.notification_category.color }};'>{{ notification_periodic_detail.notification_category }}</h5>
+                    <div>
+                        {% if notification_periodic_detail.notification_type_periodicity.check_all_notifications_are_complited == False %}
+                            
+                            <a class="card-link" href="{% url 'notifications:edit_periodic_notification' pk=notification_periodic_detail.id %}">{% translate 'Edit' %}</a>
+                        {% endif %}
+                        <a class="card-link" href="{% url 'notifications:delete_periodic_notification' pk=notification_periodic_detail.id %}">{% translate 'Delete' %}</a>
+                    </div>
+                </div>
+                <h4 class="card-subtitle">{{ notification_periodic_detail.title }}</h4>
+                <p class="card-text pt-2 pb-2">{{ notification_periodic_detail.text }}</p>
+            </div>
+            {% if notification_is_finished %}
+                <div class="card-body">
+                    <h5>{% translate 'You were reminded ' %}{{ notification_periodic_detail.notification_status.all.count }} {% translate 'times' %}:</h5>
+                    <ul>
+                        {% for time in notification_periodic_detail.notification_status.all %}
+                            <li>{{ time.time_stamp|date:"H:i:s"  }}, {{ time.time_stamp|date:"d F Y" }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <div class="card-footer">
+                    {% if notification_periodic_detail.notification_status.count > 0 %}
+                        {% if notification_periodic_detail.get_only_not_complited > 0 %}
+                            <h5 class="card-text text-center">{% translate 'Remain to be reminded' %}: {{ notification_periodic_detail.get_only_not_complited }} {% translate 'times' %}  <a href="{% url 'notifications:notification_periodic_time_stamps_list' pk=notification_periodic_detail.id %}">{% translate 'Your notification time stamps' %}</a></h5>
+                        {% else %}
+                            <h5 class="card-text text-center">{% translate '0 active time stamps are left' %}</h5>
+                        {% endif %}
+                    {% endif %}
+                    {% if count_all_revoked_execution_times > 0 %}
+                        <div>
+                            <h6 class="card-subtitle">{% translate 'Your notification revoked time stamps' %}:</h6>
+                            {% for revoked in notification_periodic_detail.get_all_revoked %}
+                                <h6 class="card-text m-2">{{ revoked.time_stamp }} <a class="card-link" href="{% url 'notifications:change_notification_status_from_revoke_to_incomplete' pk=revoked.id %}">{% translate 'Make active' %}</a></h6>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

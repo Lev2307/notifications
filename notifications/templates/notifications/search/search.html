@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ query }} - NotificationScheduler{% endblock title %}
+ 
+{% block content %}
+    <section>
+        {% include 'misc/includes/navbar.html' with user=user %}
+        {% if searched_notifications_length >= 1 %}
+            <div class="d-flex justify-content-center align-items-center">
+                <h5>{% translate 'Were found' %} {{ searched_notifications_length }} {% translate 'active notification(-s) by request ' %} - `{{ query }}`</h5>
+            </div>
+            <div>
+                {% for notification in searched_notifications %}
+                    {% if notification.check_all_notifications_are_complited == False %}
+                        {% if notification.notification_type == 'Single' %}
+                            <a href="{{ notification.notification_single.get_url_path }}" class="d-block my-3 text-decoration-none">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"  style="color: {{ notification.notification_single.notification_category.color }}">
+                                            {{ notification.notification_single.notification_category.name_type }}
+                                        </h5>
+                                        <h3 class="card-subtitle text-dark">{{ notification.notification_single.title }}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="card-text text-dark">{{ notification.notification_single.text }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% else %}
+                            <a href="{{ notification.notification_periodic.get_url_path }}" class="d-block my-3 text-decoration-none">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="color: {{ notification.notification_periodic.notification_category.color }}">
+                                            {{ notification.notification_periodic.notification_category.name_type }}
+                                        </h5>
+                                        <h3 class="card-text text-dark">{{ notification.notification_periodic.title }}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="card-text text-dark">{{ notification.notification_periodic.text }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="position-absolute top-50 start-50 translate-middle text-center">
+                <h1 class="text-dark fs-2">{% translate 'Nothing found for your request' %} - `{{ query }}`</h1>
+                <h5><a class="text-dark fs-4 p-2" href="{% url 'notifications:notification_list' %}">{% translate 'Get back for your active notifications page' %}</a></h5>
+            </div>
+        {% endif %}
+    </section>
+{% endblock content %}
