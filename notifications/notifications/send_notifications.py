@@ -7,18 +7,21 @@ from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 from django.conf import settings
 from django.utils import timezone
+from django.utils.translation import activate, deactivate
 
-def telegram(instance_id, model, notification_status_id=None):
+def telegram(instance_id, lang_code, model, notification_status_id=None):
     from .models import NotificationSingle, NotificationPeriodicity   
     if model == 'single':
         notification_single = NotificationSingle.objects.get(id=instance_id)
         time = (datetime.combine(notification_single.notification_date, notification_single.notification_time)).strftime('%B %d, %Y %H:%M:%S %p')
         user = NotificationSingle.objects.get(id=instance_id).notification_type_single.user
+        activate(lang_code)
         welcome = _(f"👋 Hi, you have received a new notification!")
         category = str(_("Category")) + ": " + notification_single.notification_category.name_type
         title = str(_("Title"))+ ": " + notification_single.title
         text = str(_("Text"))+ ": " + notification_single.text
         time_str = str(_("Time"))+ ": " + str(time)
+        deactivate()
         message = welcome + '\n' + category + '\n' + title + '\n' + text + '\n' + time_str + '\n'
         return requests.post(url=settings.TELEGRAM_API_SENDING_MESSAGE, data={'chat_id': user.users_telegram.chat_id, 'text': message})
     elif model == 'periodic':
@@ -37,7 +40,7 @@ def telegram(instance_id, model, notification_status_id=None):
         message = welcome + '\n' + category + '\n' + title + '\n' + text + '\n' + time_stamp_str + '\n'
         return requests.post(url=settings.TELEGRAM_API_SENDING_MESSAGE, data={'chat_id': user.users_telegram.chat_id, 'text': message})
 
-def email(instance_id, model, notification_status_id=None):
+def email(instance_id, lang_code, model, notification_status_id=None):
     from .models import NotificationSingle, NotificationPeriodicity   
     if model == 'single':
         notification = NotificationSingle.objects.get(id=instance_id)

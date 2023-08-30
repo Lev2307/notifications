@@ -20,13 +20,13 @@
                 {% for category in user_notification_categorys %}
                     {% if category.user != None %}
                         <div>
-                            <span class="fs-1" style="color: {{ category.color }};">{{ category }}</span>
+                            <span class="fs-1" style="color: {{ category.color }};">{{ category.name_type }}</span>
                             <a href="{% url 'notification_categories:edit_notification_category' slug=category.slug %}">{% translate 'Edit' %}</a>
                             <a href="{% url 'notification_categories:delete_notification_category' slug=category.slug %}">{% translate 'Delete' %}</a>
                         </div>
                     {% else %}
                         <div>
-                            <span class="fs-1" style="color: {{ category.color }};">{{ category }}</span>
+                            <span class="fs-1" style="color: {{ category.color }};">{{ category.name_type }}</span>
                             <span class="fs-6"> ({% translate 'Unfortunately, you cannot change or delete this category, as it is assigned by default.' %})</span>  
                         </div>
                     {% endif %}

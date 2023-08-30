@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.postgres.fields import ArrayField
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, get_language
 
 from .tasks import create_notification_task, create_periodic_notification_task
 
@@ -251,7 +251,7 @@ def create_task(instance, time):
     timezone_now = timezone.localtime(timezone.make_aware(timezone_now))
     if type(instance) == NotificationSingle:
         difference_seconds = (time - timezone_now).total_seconds() # the difference in seconds between the time of a single notification and now
-        task = create_notification_task.apply_async(args=(instance.id, ), eta=timezone_now + timedelta(seconds=difference_seconds)) # creating celery task, which will be executed via difference_seconds ( eta argument )
+        task = create_notification_task.apply_async(args=(instance.id, get_language()), eta=timezone_now + timedelta(seconds=difference_seconds)) # creating celery task, which will be executed via difference_seconds ( eta argument )
 
         model = NotificationId.objects.create(notification_id=task.id) # creating task model
         instance.notification_type_single.task_id.add(model) # adding task to the general model
@@ -262,7 +262,7 @@ def create_task(instance, time):
 
     elif type(instance) == NotificationPeriodicity:
         notif_status = NotificationStatus.objects.create(time_stamp=time) # creating a notification status model with the time_stamp argument - the notification execution time
-        task = create_periodic_notification_task.apply_async(args=(instance.id, notif_status.id), eta=time) #  creating celery task, which will be executed in argument time 
+        task = create_periodic_notification_task.apply_async(args=(instance.id, notif_status.id, get_language()), eta=time) #  creating celery task, which will be executed in argument time 
         instance.notification_status.add(notif_status) # adding this status to the model
 
         model = NotificationId.objects.create(notification_id=task.id) # creating task model

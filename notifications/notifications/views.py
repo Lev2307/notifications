@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.utils import timezone
 from django.db.models.query_utils import Q
+from django.utils.translation import get_language
 
 from authentication.models import MyUser
 from config.celery import app
@@ -465,7 +466,7 @@ def change_notification_status_from_revoke_to_incomplete(request, **kwargs):
         if notification_status.time_stamp > timezone.localtime(timezone.now()):
             notification_status.done = 0 # incomplited
             notification_status.save()
-            task = create_periodic_notification_task.apply_async(args=(notification_periodic_model.id, notification_status.id), eta=notification_status.time_stamp)
+            task = create_periodic_notification_task.apply_async(args=(notification_periodic_model.id, notification_status.id, get_language()), eta=notification_status.time_stamp)
             notification_celery_id.notification_id = task
             notification_celery_id.save()
     return HttpResponseRedirect(reverse_lazy('notifications:detail_periodic_notification', kwargs={"pk": notification_periodic_model.id }))
@@ -475,12 +476,12 @@ def notificatePeriodicNotificationOnlyForAdmin(request, *args, **kwargs):
     notification_status = get_object_or_404(NotificationStatus, id=kwargs['pk'])
     notification_periodic_model = NotificationPeriodicity.objects.get(notification_status=notification_status)
     if notification_periodic_model.notification_type_periodicity.user == request.user and notification_status.done == 0:
-        create_periodic_notification_task.delay(notification_periodic_model.id, notification_status.id)
+        create_periodic_notification_task.delay(notification_periodic_model.id, notification_status.id, get_language())
     return HttpResponseRedirect(reverse_lazy('notifications:detail_periodic_notification', kwargs={'pk': notification_periodic_model.id}))
 
 @permission_required('is_staff', login_url=reverse_lazy('notifications:notification_list'))
 def notificateSingleNotificationOnlyForAdmin(request, *args, **kwargs):
     notification = get_object_or_404(NotificationSingle, id=kwargs['pk'])
     if notification.notification_type_single.user == request.user and notification.notification_status.done == 0:
-        create_notification_task.delay(notification.id)
+        create_notification_task.delay(notification.id, get_language())
     return HttpResponseRedirect(reverse_lazy('notifications:notification_list'))

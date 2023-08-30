@@ -142,9 +142,9 @@ class MyUser(AbstractUser):
     def save(self, *args, **kwargs):
         from notification_categories.models import NotificationCategory
         super().save(*args, **kwargs)
-        NotificationCategory.objects.get_or_create(name_type=_('study'), color='#107a8b', slug='study')
-        NotificationCategory.objects.get_or_create(name_type=_('work'), color='#ba2121', slug='work')
-        NotificationCategory.objects.get_or_create(name_type=_('sport'), color='#e0c45c', slug='sport')
+        NotificationCategory.objects.get_or_create(name_type='study', color='#107a8b', slug='study')
+        NotificationCategory.objects.get_or_create(name_type='work', color='#ba2121', slug='work')
+        NotificationCategory.objects.get_or_create(name_type='sport', color='#e0c45c', slug='sport')
 
     def get_all_active_and_attached_networks(self):
         return [chosen.sender for chosen in self.choose_sending.all() if chosen.linked_network == True and chosen.active == True]

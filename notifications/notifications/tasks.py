@@ -9,7 +9,7 @@ from celery.utils.log import get_task_logger
 logger = get_task_logger(__name__)
 
 @shared_task()
-def create_notification_task(instance_id): 
+def create_notification_task(instance_id, lang_code): 
    from .models import NotificationSingle, NotificationStatus
 
    notif_status_id = NotificationSingle.objects.get(id=instance_id).notification_status.id
@@ -25,10 +25,10 @@ def create_notification_task(instance_id):
    if len(all_notification_sender_types) > 0:
       for f in all_sender_functions:
          if (f.__name__) in all_notification_sender_types:
-            f(instance_id, model='single')
+            f(instance_id, lang_code, model='single')
 
 @shared_task()
-def create_periodic_notification_task(instance_id, notification_status_id):
+def create_periodic_notification_task(instance_id, notification_status_id, lang_code):
    from .models import NotificationPeriodicity, NotificationStatus
    notification_status = NotificationStatus.objects.get(id=notification_status_id)
 
@@ -42,4 +42,4 @@ def create_periodic_notification_task(instance_id, notification_status_id):
    if len(all_notification_sender_types) > 0:
       for f in all_sender_functions:
          if (f.__name__) in all_notification_sender_types:
-            f(instance_id, model='periodic', notification_status_id=notification_status_id)
+            f(instance_id, lang_code, model='periodic', notification_status_id=notification_status_id)

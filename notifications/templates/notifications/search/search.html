@@ -2,14 +2,14 @@
 
 {% load i18n %}
 
-{% block title %}{{ query }} - NotificationScheduler{% endblock title %}
+{% block title %}{{ query }} - Notifications{% endblock title %}
  
 {% block content %}
     <section>
         {% include 'misc/includes/navbar.html' with user=user %}
         {% if searched_notifications_length >= 1 %}
             <div class="d-flex justify-content-center align-items-center">
-                <h5>{% translate 'Were found' %} {{ searched_notifications_length }} {% translate 'active notification(-s) by request ' %} - `{{ query }}`</h5>
+                <h5>{% translate 'Were found' %} {{ searched_notifications_length }} {% translate 'incomplited notification(-s) by request ' %} - `{{ query }}`</h5>
             </div>
             <div>
                 {% for notification in searched_notifications %}
@@ -49,7 +49,7 @@
         {% else %}
             <div class="position-absolute top-50 start-50 translate-middle text-center">
                 <h1 class="text-dark fs-2">{% translate 'Nothing found for your request' %} - `{{ query }}`</h1>
-                <h5><a class="text-dark fs-4 p-2" href="{% url 'notifications:notification_list' %}">{% translate 'Get back for your active notifications page' %}</a></h5>
+                <h5><a class="text-dark fs-4 p-2" href="{% url 'notifications:notification_list' %}">{% translate 'Get back for your incomplited notifications page' %}</a></h5>
             </div>
         {% endif %}
     </section>

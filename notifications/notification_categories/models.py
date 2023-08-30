@@ -29,6 +29,6 @@ class NotificationCategory(models.Model):
         return self.name_type
     
     def save(self, *args, **kwargs):
-        if not self.slug and self.name_type not in ['study', 'work', 'general']:
+        if not self.slug and self.name_type not in ['study', 'work', 'sport']:
             self.slug = slugify(self.name_type, allow_unicode=True)
         return super().save(*args, **kwargs)

@@ -146,11 +146,8 @@ LANGUAGE_CODE = "ru"
 LANGUAGES = [
     ("ru", _("Russian")),
     ("en", _("English")),
-    ("es", _("Spanish")),
-    ("fr", _("French")), 
     ("de", _("German")),
 ]
-
 
 TZ_CHOICES = [
     ('Atlantic/Reykjavik', _('UTC 00:00 ( for example Reykjavik, Lisbon )')),

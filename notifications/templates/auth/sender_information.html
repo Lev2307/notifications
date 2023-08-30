@@ -11,7 +11,7 @@
             {% if sender %}
                 {% if sender == 'telegram' %}
                     <h4>{% translate 'Your linked telegram' %} - {{ user.users_telegram.telegram_user }}</h4>
-                    <h4>{% translate 'wad added in' %} {{ user.users_telegram.started_time }}</h4>
+                    <h4>{% translate 'was added in' %} {{ user.users_telegram.started_time }}</h4>
                     <a href="{% url 'auth:delete_telegram' pk=user.users_telegram.id %}">{% translate 'Detach telegram' %}</a>
                 {% elif sender == 'email' %}
                     <h4>{% translate 'Your linked email' %} - {{ user.email }}</h4>
