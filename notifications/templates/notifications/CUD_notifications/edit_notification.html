@@ -2,7 +2,15 @@
 
 {% load i18n %}
 
-{% block title %} {% translate 'Editing single notification' %} {% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Editing single notification' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Editing single notification' %}" />
+
+    <meta property="og:url" content="{% url 'notifications:edit_notification' pk=object.id %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Editing single notification' %}{% endblock title %}
 
 {% block content %}
     <section>

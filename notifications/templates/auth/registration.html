@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %} {% translate 'Registration Page' %} {% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Registration Page' %}" />
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Registration Page' %}" />
+    <meta property="og:url" content="{% url 'auth:registration' %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Registration Page' %}{% endblock title %}
 
 {% block content %}
     <section>

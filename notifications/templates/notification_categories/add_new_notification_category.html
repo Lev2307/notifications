@@ -2,7 +2,15 @@
 
 {% load i18n %}
 
-{% block title %} {% translate 'Create a new notification category' %} {% endblock title %}
+
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Add a new category for notifications' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Add a new category for notifications' %}" />
+    <meta property="og:url" content="{% url 'notification_categories:add_notification_category' %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Add a new category for notifications' %}{% endblock title %}
 
 {% block content %}
 <section>

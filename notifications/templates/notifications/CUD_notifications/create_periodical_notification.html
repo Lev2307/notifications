@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %} {% translate 'Creating periodic notification' %} {% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Creating periodic notification' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Creating periodic notification' %}" />
+    <meta property="og:url" content="{% url 'notifications:create_periodical_notification' %}" />
+{% endblock meta_tags %}
 
+{% block title %}{% translate 'Creating periodic notification' %}{% endblock title %}
 
 {% block content %}
     <section>

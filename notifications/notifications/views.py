@@ -381,8 +381,9 @@ class NotificationPeriodicListTimeStampsView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
-        c['times'] = self.model.objects.get(id=self.kwargs['pk']).notification_status.order_by('time_stamp')
-        c['notification_id'] = self.model.objects.get(id=self.kwargs['pk']).id
+        model = get_object_or_404(self.model, pk=self.kwargs['pk'])
+        c['times'] = model.notification_status.order_by('time_stamp')
+        c['model'] = model
         c['user'] = self.request.user
         return c
 

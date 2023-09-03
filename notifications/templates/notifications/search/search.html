@@ -2,7 +2,14 @@
 
 {% load i18n %}
 
-{% block title %}{{ query }} - Notifications{% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Search incomplited notifications by title or text...' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Search incomplited notifications by title or text...' %}" />
+    <meta property="og:url" content="{% url 'notifications:notification_list' %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Search incomplited notifications by title or text...' %}{% endblock title %}
  
 {% block content %}
     <section>

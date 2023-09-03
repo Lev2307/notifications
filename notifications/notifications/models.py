@@ -170,8 +170,12 @@ class NotificationPeriodicity(UrlBase):
         return f'Periodic - `{self.title.capitalize()}`'
 
     def get_only_not_complited(self):
-        '''Getting all the not complited statuses of an notification'''
+        '''Getting amount of all the incomplited statuses of an notification'''
         return self.notification_status.filter(done=0).count()
+
+    def get_all_finished_time_stamps(self):
+        ''' Getting all finished ( complited ) statuses'''
+        return self.notification_status.filter(done=1).order_by('time_stamp')
     
     def get_all_revoked(self):
         '''Getting all revoked statuses whose time ( time_stamp ) is greater than now'''
@@ -179,11 +183,11 @@ class NotificationPeriodicity(UrlBase):
         all_filtered_by_revoked_status_and_timestamp = []
         for r in all_filtered_by_revoked_status:
             if r.time_stamp > timezone.now(): # if the time of revoked notification > timezone.now()
-                print(r.time_stamp)
                 all_filtered_by_revoked_status_and_timestamp.append(r) # add revoked status to the list
             else:
                 NotificationId.objects.delete(notification_id=r.notification_celery_id)
         return all_filtered_by_revoked_status_and_timestamp
+
     
     def get_url_path(self):
         return reverse_lazy("notifications:detail_periodic_notification", kwargs={"pk": self.pk})

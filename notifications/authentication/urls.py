@@ -31,6 +31,7 @@ urlpatterns = [
     path('profile/change_user_email/<uuid:pk>/', ChangeUserEmail.as_view(), name='changing_user_email'),
     path('profile/verificate_user_email/', verificate_user_email, name='verificate_user_email'),
     path('activate_user_email/<uidb64>/<token>/', activate_user_email, name='activate_user_email'),
+    
     path('reset_password/', PasswordResetView.as_view(template_name='auth/email/reset_password/reset_password.html',
                                                                  html_email_template_name='auth/email/reset_password/reset_password_email.html'),
                                                                  name="password_reset"),

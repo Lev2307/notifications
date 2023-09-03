@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %} {% translate 'Creating single notification' %} {% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Creating single notification' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Creating single notification' %}" />
+    <meta property="og:url" content="{% url 'notifications:create_notification' %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Creating single notification' %}{% endblock title %}
 
 {% block content %}
     <section>

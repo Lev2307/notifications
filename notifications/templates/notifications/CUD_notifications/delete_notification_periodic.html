@@ -2,7 +2,14 @@
 
 {% load i18n %}
 
-{% block title %} {% translate 'Deleting periodic notification' %} {% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Deleting periodic notification' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Deleting periodic notification' %}" />
+    <meta property="og:url" content="{% url 'notifications:delete_periodic_notification' pk=notification.id %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Deleting periodic notification' %}{% endblock title %}
 
 {% block content %}
     <section>

@@ -155,6 +155,10 @@ class MyUser(AbstractUser):
     def sender_functions(self):
         return [f for f in vars(send_notifications).values() if inspect.isfunction(f)]
 
+    def get_timezone_name(self):
+        for tz, name in settings.TZ_CHOICES:
+            if self.tz == tz:
+                return name
 
 @receiver(pre_save, sender=MyUser)
 def check_user_tz(sender, instance, **kwargs):

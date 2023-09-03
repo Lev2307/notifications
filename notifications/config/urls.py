@@ -22,6 +22,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 from notifications.views import redirect_user_view
 
+
 urlpatterns = i18n_patterns(
     path('', redirect_user_view, name="redirect_user_view"),
     path('admin/', admin.site.urls),
@@ -49,3 +50,6 @@ urlpatterns = i18n_patterns(
     path('auth/', include(('authentication.urls', 'auth'), namespace='auth')),
 
 )  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = 'core.views.not_found_404'
+hhandler500 = 'core.views.server_error_500'

@@ -2,6 +2,16 @@
 
 {% load i18n %}
 
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Revoke all notification timestamps' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Revoke all notification timestamps' %}" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{% url 'notifications:notification_periodic_revoke_all_time_stamps' pk=object.id %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Revoke all notification timestamps' %}{% endblock title %}
+
 {% block content %}
     <section>
         {% include 'misc/includes/navbar.html' with user=user %}

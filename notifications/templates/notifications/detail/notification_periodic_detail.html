@@ -2,7 +2,15 @@
 
 {% load i18n %}
 
-{% block title %}{% translate 'Periodic notification' %} - {{ notification_periodic_detail.title }} {% endblock title %}
+{% block meta_tags %}
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:title" content="Notifications | {{ notification_periodic_detail.title }}" />
+    <meta property="og:description" content="Notifications | {{ notification_periodic_detail.text }}" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{{ notification_periodic_detail.get_url_path }}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Periodic notification' %} - {{ notification_periodic_detail.title }}{% endblock title %}
 
 {% block content %}
     <section>
@@ -24,21 +32,19 @@
             </div>
             {% if notification_is_finished %}
                 <div class="card-body">
-                    <h5>{% translate 'You were reminded ' %}{{ notification_periodic_detail.notification_status.all.count }} {% translate 'times' %}:</h5>
+                    <h5>{% translate 'You were reminded ' %}{{ notification_periodic_detail.get_all_finished_time_stamps.count }} {% translate 'times' %}:</h5>
                     <ul>
-                        {% for time in notification_periodic_detail.notification_status.all %}
+                        {% for time in notification_periodic_detail.get_all_finished_time_stamps %}
                             <li>{{ time.time_stamp|date:"H:i:s"  }}, {{ time.time_stamp|date:"d F Y" }}</li>
                         {% endfor %}
                     </ul>
                 </div>
             {% else %}
                 <div class="card-footer">
-                    {% if notification_periodic_detail.notification_status.count > 0 %}
-                        {% if notification_periodic_detail.get_only_not_complited > 0 %}
-                            <h5 class="card-text text-center">{% translate 'Remain to be reminded' %}: {{ notification_periodic_detail.get_only_not_complited }} {% translate 'times' %}  <a href="{% url 'notifications:notification_periodic_time_stamps_list' pk=notification_periodic_detail.id %}">{% translate 'Your notification time stamps' %}</a></h5>
-                        {% else %}
-                            <h5 class="card-text text-center">{% translate '0 active time stamps are left' %}</h5>
-                        {% endif %}
+                    {% if notification_periodic_detail.get_only_not_complited > 0 %}
+                        <h5 class="card-text text-center">{% translate 'Remain to be reminded' %}: {{ notification_periodic_detail.get_only_not_complited }} {% translate 'times' %}  <a href="{% url 'notifications:notification_periodic_time_stamps_list' pk=notification_periodic_detail.id %}">{% translate 'Your notification time stamps' %}</a></h5>
+                    {% else %}
+                        <h5 class="card-text text-center">{% translate '0 active time stamps are left' %}</h5>
                     {% endif %}
                     {% if count_all_revoked_execution_times > 0 %}
                         <div>

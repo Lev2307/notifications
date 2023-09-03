@@ -114,6 +114,7 @@ class UserProfileView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['user_notification_categorys'] = NotificationCategory.objects.filter(Q(user=self.request.user) | Q(user=None))
         context['all_choose_sending'] = ChooseSendingNotifications.objects.filter(user=self.request.user)
+        print(type(self.request.user.tz))
         return context
 
 @login_required(login_url=reverse_lazy('auth:login'))

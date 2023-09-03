@@ -2,6 +2,14 @@
 
 {% load i18n tz %}
 
+{% block meta_tags %}
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:title" content="Notifications | {{ notification_single_detail.title }}" />
+    <meta property="og:description" content="Notifications | {{ notification_single_detail.text }}" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{{ notification_single_detail.get_url_path }}" />
+{% endblock meta_tags %}
+
 {% block title %}{% translate 'Single notification' %} - {{ notification_single_detail.title }} {% endblock title %}
 
 {% block content %}

@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %} {{ user.username }} {% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="Notifications | {{ user.username }}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:title" content="Notifications | {{ user.username }}" />
+    <meta property="og:description" content="Notifications | {{ user.username }} " />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{% url 'auth:profile' %}" />
+{% endblock meta_tags %}
+
+{% block title %}{{ user.username }}{% endblock title %}
 
 {% block content %}
     <section>
@@ -69,7 +78,9 @@
                     </ul>
                 </div>
             </aside>
-            {{ user.tz }}
+            <div>
+                <h2>{% translate 'Timezone' %} -> {{ user.get_timezone_name }}</h2>
+            </div>
         </div>
     </section>
 {% endblock %}

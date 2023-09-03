@@ -2,7 +2,14 @@
 
 {% load i18n %}
 
-{% block title %} {% translate 'Sender information' %} {% endblock title %}
+{% block meta_tags %}
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Sender information' %}" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{% url 'auth:sender_information' slug=sender %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Sender information' %} - {{ sender }}{% endblock title %}
 
 {% block content %}
     <section>

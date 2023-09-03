@@ -2,6 +2,16 @@
 
 {% load i18n %}
 
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'List of timestamps of periodic notification' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'List of timestamps of periodic notification' %}" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{% url 'notifications:notification_periodic_time_stamps_list' pk=model.id %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'List of timestamps of periodic notification' %}{% endblock title %}
+
 {% block content %}
     <section>
         {% include 'misc/includes/navbar.html' with user=user %}
@@ -15,6 +25,6 @@
                 </h1>
             {% endif %}
         {% endfor %}
-        <a href="{% url 'notifications:notification_periodic_revoke_all_time_stamps' pk=notification_id %}">{% translate 'Revoke all notification time stamps' %}</a>
+        <a href="{% url 'notifications:notification_periodic_revoke_all_time_stamps' pk=model.id %}">{% translate 'Revoke all notification time stamps' %}</a>
     </section>
 {% endblock content %}

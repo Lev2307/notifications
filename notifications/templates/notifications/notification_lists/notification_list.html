@@ -2,7 +2,14 @@
 
 {% load i18n %}
 
-{% block title %} {% translate 'Your notifications' %} {% endblock title %}
+{% block meta_tags %}
+    <meta name="description" content="{% translate 'Your notifications' %}">
+    <meta name="og:site_name" content="Notifications">
+    <meta property="og:description" content="{% translate 'Your notifications' %}" />
+    <meta property="og:url" content="{% url 'notifications:notification_list' %}" />
+{% endblock meta_tags %}
+
+{% block title %}{% translate 'Your notifications' %}{% endblock title %}
 
 {% block content %}
     <section>
