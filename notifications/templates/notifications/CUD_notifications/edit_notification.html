@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load i18n %}
+{% load i18n crispy_forms_tags %}
 
 {% block meta_tags %}
     <meta name="description" content="{% translate 'Editing single notification' %}">
@@ -10,17 +10,24 @@
     <meta property="og:url" content="{% url 'notifications:edit_notification' pk=object.id %}" />
 {% endblock meta_tags %}
 
+{% block style %}
+    <style>
+        #div_id_notification_date > div {
+            display: flex;
+        }
+        #id_notification_date_day, #id_notification_date_month, #id_notification_date_year {
+            width: 33%;
+        }      
+    </style>
+{% endblock style %}
+
 {% block title %}{% translate 'Editing single notification' %}{% endblock title %}
 
 {% block content %}
     <section>
         {% include 'misc/includes/navbar.html' with user=user %}
         <div>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">{% translate 'Edit' %}</button>
-            </form>
+            {% crispy form %}
         </div>
     </section>
 {% endblock content %}

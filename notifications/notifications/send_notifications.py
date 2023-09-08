@@ -29,7 +29,7 @@ def telegram(instance_id, lang_code, model, notification_status_id=None):
         notification_periodicity = NotificationPeriodicity.objects.get(id=instance_id)
 
         time_stamp = notification_periodicity.notification_status.get(id=notification_status_id).time_stamp
-        time_stamp = timezone.localtime(time_stamp, timezone=pytz.timezone(str(timezone.get_current_timezone())))
+        time_stamp = timezone.localtime(time_stamp, timezone=pytz.timezone(user.tz))
         time_stamp = time_stamp.strftime('%B %d, %Y %H:%M:%S %p')
         
         welcome = _(f"👋 Hi, you have received a new notification!")
@@ -57,9 +57,10 @@ def email(instance_id, lang_code, model, notification_status_id=None):
         msg.send()
     elif model == 'periodic':
         notification_periodicity = NotificationPeriodicity.objects.get(id=instance_id)
+        user = notification_periodicity.notification_type_periodicity.user
 
         time_stamp = notification_periodicity.notification_status.get(id=notification_status_id).time_stamp
-        time_stamp = timezone.localtime(time_stamp, timezone=pytz.timezone(str(timezone.get_current_timezone())))
+        time_stamp = timezone.localtime(time_stamp, timezone=pytz.timezone(user.tz))
         time_stamp = time_stamp.strftime('%B %d, %Y %H:%M:%S %p')
 
         user = NotificationPeriodicity.objects.get(id=instance_id).notification_type_periodicity.user

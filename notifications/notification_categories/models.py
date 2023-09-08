@@ -13,7 +13,7 @@ class NotificationCategory(models.Model):
     ) 
     name_type = models.CharField( # the category name
         _("Category name"),
-        max_length=45
+        max_length=15
     )
     color = models.CharField( # category color
         _("Color"), 

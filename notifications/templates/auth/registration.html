@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n crispy_forms_tags %}
 
 {% block meta_tags %}
     <meta name="description" content="{% translate 'Registration Page' %}" />
@@ -11,13 +11,9 @@
 {% block title %}{% translate 'Registration Page' %}{% endblock title %}
 
 {% block content %}
-    <section>
-        <div>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">{% translate 'Create account' %}</button>
-            </form>
+    <section class="vh-100">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100">
+            {% crispy form %}
         </div>
     </section>
 {% endblock content %}

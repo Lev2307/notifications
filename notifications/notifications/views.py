@@ -165,8 +165,7 @@ class NotificationSingleEditView(LoginRequiredMixin, UpdateView):
 
     def get_form_kwargs(self):
         kw = super().get_form_kwargs()
-        kw['request'] = self.request
-        kw['notification_kwargs'] = self.kwargs
+        kw['user'] = self.request.user
         return kw
     
     def get_context_data(self, **kwargs):
@@ -277,39 +276,38 @@ class PeriodicalNotificationCreateView(LoginRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
-        request_post_data = self.request.POST
+        value = form.cleaned_data.get('dates_type')
         current_date = timezone.localtime(timezone.now()).date()
         notif_base = NotificationBase.objects.create(
             user=self.request.user,
             notification_type='Periodic'
-        )
-        for value in request_post_data.values():                    
-            if value == 'Every day':
-                dates = []
-                amount_of_dates = form.cleaned_data.get('notification_periodicity_num')
-                for _ in range(amount_of_dates):
-                    current_date = current_date + timedelta(days=1)
-                    dates.append(current_date)
-                self.model.objects.create(
-                    notification_category=form.cleaned_data['notification_category'],
-                    title=form.cleaned_data['title'],
-                    text=form.cleaned_data['text'],
-                    notification_periodicity_num=form.cleaned_data['notification_periodicity_num'],
-                    notification_periodic_time=form.cleaned_data['notification_periodic_time'],
-                    dates=dates,
-                    notification_type_periodicity=notif_base
-                )
-            elif value == 'Your own dates':
-                dates = self.request.POST.get('dates').split(',')
-                dates = sorted(dates, key=lambda x: datetime.strptime(x, '%Y-%m-%d'))
-                self.model.objects.create(
-                    notification_category=form.cleaned_data['notification_category'],
-                    title=form.cleaned_data['title'],
-                    text=form.cleaned_data['text'],
-                    notification_periodic_time=form.cleaned_data['notification_periodic_time'],
-                    dates=dates,
-                    notification_type_periodicity=notif_base
-                )
+        )             
+        if value == 'Every day':
+            dates = []
+            amount_of_dates = form.cleaned_data.get('notification_periodicity_num')
+            for _ in range(amount_of_dates):
+                current_date = current_date + timedelta(days=1)
+                dates.append(current_date)
+            self.model.objects.create(
+                notification_category=form.cleaned_data['notification_category'],
+                title=form.cleaned_data['title'],
+                text=form.cleaned_data['text'],
+                notification_periodicity_num=form.cleaned_data['notification_periodicity_num'],
+                notification_periodic_time=form.cleaned_data['notification_periodic_time'],
+                dates=dates,
+                notification_type_periodicity=notif_base
+            )
+        elif value == 'Your own dates':
+            dates = self.request.POST.get('dates').split(',')
+            dates = sorted(dates, key=lambda x: datetime.strptime(x, '%Y-%m-%d'))
+            self.model.objects.create(
+                notification_category=form.cleaned_data['notification_category'],
+                title=form.cleaned_data['title'],
+                text=form.cleaned_data['text'],
+                notification_periodic_time=form.cleaned_data['notification_periodic_time'],
+                dates=dates,
+                notification_type_periodicity=notif_base
+            )
         return HttpResponseRedirect(self.success_url)
 
 class NotificationPeriodicEditView(LoginRequiredMixin, UpdateView):

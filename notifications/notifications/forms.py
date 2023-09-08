@@ -1,14 +1,15 @@
 from datetime import datetime, timedelta
-import pytz
 
 from django import forms
 from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.postgres.forms import SimpleArrayField
+
+from crispy_forms import helper, layout
 
 from notification_categories.models import NotificationCategory
 from config.celery import app
-
 from .models import NotificationSingle, NotificationPeriodicity, NotificationId, NotificationStatus
 
 class NotificationCreateForm(forms.ModelForm):
@@ -25,6 +26,35 @@ class NotificationCreateForm(forms.ModelForm):
         self.fields['notification_category'].queryset = NotificationCategory.objects.filter(Q(user=self.user) | Q(user=None))
         self.fields['notification_date'].initial = timezone.localtime(timezone.now()).date()
         self.fields['notification_time'].initial = timezone.localtime(timezone.now()).time()
+
+        notification_category_field = layout.Field(
+            "notification_category", css_class="form-control w-25"
+        )
+        title_field = layout.Field(
+            "title", css_class="form-control", placeholder=_("Title")
+        )
+        text_field = layout.Field(
+            "text", css_class="form-control", placeholder=_("Text")
+        )
+        time_field = layout.Field(
+            "notification_time", css_class="form-control"
+        )
+        submit_button = layout.Submit('submit', _('Create'), css_class='btn btn-primary mt-2')
+
+        self.helper = helper.FormHelper()
+        self.helper.form_class = 'form-vertical w-75'
+        self.helper.form_method = 'post'
+        self.helper.layout = layout.Layout(
+            notification_category_field,
+            layout.Div(title_field, css_class="mt-3"),
+            layout.Div(text_field, css_class="mt-3"),
+            layout.Row(
+                layout.Column('notification_date', css_class="form-group col-6 mb-0"),
+                layout.Column(time_field, css_class="form-group col-6 mb-0"),
+                css_class="row mt-3"
+            ),
+            submit_button
+        )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -45,14 +75,41 @@ class NotificationSingleEditForm(forms.ModelForm):
         model = NotificationSingle
         fields = ['notification_category', 'title', 'text', 'notification_date', 'notification_time']
 
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        self.notification_kwargs = kwargs.pop('notification_kwargs')
-
+    def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['notification_category'].queryset = NotificationCategory.objects.filter(Q(user=self.request.user) | Q(user=None))
+        self.user = user
+        self.fields['notification_category'].queryset = NotificationCategory.objects.filter(Q(user=self.user) | Q(user=None))
         self.fields['notification_date'].initial = timezone.localtime(timezone.now()).date()
         self.fields['notification_time'].initial = timezone.localtime(timezone.now()).time()
+
+        notification_category_field = layout.Field(
+            "notification_category", css_class="form-control w-25"
+        )
+        title_field = layout.Field(
+            "title", css_class="form-control", placeholder=_("Title")
+        )
+        text_field = layout.Field(
+            "text", css_class="form-control", placeholder=_("Text")
+        )
+        time_field = layout.Field(
+            "notification_time", css_class="form-control"
+        )
+        submit_button = layout.Submit('submit', _('Edit'), css_class='btn btn-warning mt-2')
+
+        self.helper = helper.FormHelper()
+        self.helper.form_class = 'form-vertical w-75'
+        self.helper.form_method = 'post'
+        self.helper.layout = layout.Layout(
+            notification_category_field,
+            layout.Div(title_field, css_class="mt-3"),
+            layout.Div(text_field, css_class="mt-3"),
+            layout.Row(
+                layout.Column('notification_date', css_class="form-group col-6 mb-0"),
+                layout.Column(time_field, css_class="form-group col-6 mb-0"),
+                css_class="row mt-3"
+            ),
+            submit_button
+        )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -68,44 +125,95 @@ class NotificationSingleEditForm(forms.ModelForm):
 class PeriodicalNotificationCreateForm(forms.ModelForm):
     notification_category = forms.ModelChoiceField(label=_("Category"), queryset=NotificationCategory.objects.all(), initial='study')
     notification_periodicity_num = forms.IntegerField(label=_("Number of repetitions"), initial=1, min_value=1, max_value=15)
+    dates_type = forms.ChoiceField(
+        label=_("Select dates"), 
+        choices=[('Every day', _('Every day')), ('Your own dates', _('Your own dates'))], 
+        initial="Every day", 
+        widget=forms.RadioSelect(attrs={'onchange': 'check()'})
+    )
+    dates = SimpleArrayField(forms.CharField(max_length=30), label='', required=False)
     class Meta:
         model = NotificationPeriodicity
-        fields = ['notification_category', 'title', 'text', 'notification_periodic_time', 'notification_periodicity_num']
+        fields = ['notification_category', 'title', 'text', 'notification_periodic_time', 'notification_periodicity_num', 'dates']
         widgets = {
             'notification_periodic_time' : forms.TimeInput(attrs={'type': 'time'}),
         }
     
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-
         super().__init__(*args, **kwargs)
         self.fields['notification_category'].queryset = NotificationCategory.objects.filter(Q(user=self.request.user) | Q(user=None))
         self.fields['notification_periodic_time'].initial = timezone.localtime(timezone.now()).time()
+
+        notification_category_field = layout.Field(
+            "notification_category", css_class="form-control w-25"
+        )
+        title_field = layout.Field(
+            "title", css_class="form-control", placeholder=_("Title")
+        )
+        text_field = layout.Field(
+            "text", css_class="form-control", placeholder=_("Text")
+        )
+        time_field = layout.Field(
+            "notification_periodic_time", css_class="form-control"
+        )
+        notification_periodicity_num_field = layout.Field(
+            "notification_periodicity_num", css_class="form-control"
+        )
+        dates_field = layout.Field(
+            "dates", css_class="form-control d-none"
+        )
+        dates_type_field = layout.Div(
+            layout.Field('dates_type', css_class="form-control"),
+            css_class="myclass mt-2"
+        )
+        submit_button = layout.ButtonHolder(
+            layout.Submit('submit', _('Create'), css_class='btn btn-primary mt-2')
+        )
+        self.helper = helper.FormHelper()
+        self.helper.form_class = 'form-inline w-75'
+        self.helper.form_method = 'post'
+        self.helper.layout = layout.Layout(
+            notification_category_field,
+            layout.Div(title_field, css_class="mt-3"),
+            layout.Div(text_field, css_class="mt-3"),
+            time_field,
+            notification_periodicity_num_field,
+            dates_type_field,
+            dates_field,
+            submit_button
+        )
     
     def clean(self):
-        request_data = self.request.POST
-        for value in request_data.values():
-            if value == 'Every day':
-                if request_data.get('dates'):
-                    raise forms.ValidationError(_("If you want to enter your dates, you should choose `Your own dates`"))
-            elif value == 'Your own dates':
-                if not request_data.get('dates'):
-                    raise forms.ValidationError(_("If you`ve chosen `Your own dates`, please enter your dates in the field `your own dates`"))
-                user_dates = request_data.get('dates').split(',')
-                for date in user_dates:
-                    try:
-                        date = datetime.strptime(date, "%Y-%m-%d")
-                    except ValueError:
-                        raise forms.ValidationError(_("ENTER DATES IN APPROPRIATE FORMAT"))
-                    if date > datetime.strptime("2040-12-31", "%Y-%m-%d"):
-                        raise forms.ValidationError(_(f'This date {date.date()} is too late. Please enter a date no later than 2040 year =3'))
+        value = self.cleaned_data.get('dates_type')
+        if value == 'Every day':
+            if self.cleaned_data.get('dates'):
+                raise forms.ValidationError(_("If you want to enter your dates, you should choose `Your own dates`"))
+        elif value == 'Your own dates':
+            if not self.cleaned_data.get('dates'):
+                raise forms.ValidationError(_("If you`ve chosen `Your own dates`, please enter your dates in the field `your own dates`"))
+            user_dates = self.cleaned_data.get('dates')
+            for date in user_dates:
+                try:
+                    date = datetime.strptime(date, "%Y-%m-%d")
+                except ValueError:
+                    raise forms.ValidationError(_("ENTER DATES IN APPROPRIATE FORMAT"))
+                if date > datetime.strptime("2040-12-31", "%Y-%m-%d"):
+                    raise forms.ValidationError(_(f'This date {date.date()} is too late. Please enter a date no later than 2040 year =3'))
 
 class NotificationPeriodicEditForm(forms.ModelForm):
     notification_category = forms.ModelChoiceField(label=_("Category"), queryset=NotificationCategory.objects.all(), initial='study')
-    notification_periodicity_num = forms.IntegerField(label=_("Number of repetitions"), initial=1, min_value=0, max_value=15)
+    notification_periodicity_num = forms.IntegerField(label=_("Number of repetitions"), initial=1, min_value=1, max_value=15)
+    dates_type = forms.ChoiceField(
+        label=_("Select dates"), 
+        choices=[('Every day', _('Every day')), ('Your own dates', _('Your own dates'))], 
+        initial="Every day", 
+        widget=forms.RadioSelect(attrs={'onchange': 'check()'})
+    )
+    dates = SimpleArrayField(forms.CharField(max_length=30), label='', required=False)
     class Meta:
         model = NotificationPeriodicity
-        fields = ['notification_category', 'title', 'text', 'notification_periodic_time', 'notification_periodicity_num']
+        fields = ['notification_category', 'title', 'text', 'notification_periodic_time', 'notification_periodicity_num', 'dates']
         widgets = {
             'notification_periodic_time' : forms.TimeInput(attrs={'type': 'time'}),
         }
@@ -117,17 +225,56 @@ class NotificationPeriodicEditForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['notification_category'].queryset = NotificationCategory.objects.filter(Q(user=self.request.user) | Q(user=None))
         self.fields['notification_periodic_time'].initial = timezone.localtime(timezone.now()).time()
+
+        notification_category_field = layout.Field(
+            "notification_category", css_class="form-control w-25"
+        )
+        title_field = layout.Field(
+            "title", css_class="form-control", placeholder=_("Title")
+        )
+        text_field = layout.Field(
+            "text", css_class="form-control", placeholder=_("Text")
+        )
+        time_field = layout.Field(
+            "notification_periodic_time", css_class="form-control"
+        )
+        notification_periodicity_num_field = layout.Field(
+            "notification_periodicity_num", css_class="form-control"
+        )
+        dates_field = layout.Field(
+            "dates", css_class="form-control d-none"
+        )
+        dates_type_field = layout.Div(
+            layout.Field('dates_type', css_class="form-control"),
+            css_class="myclass mt-2"
+        )
+        submit_button = layout.ButtonHolder(
+            layout.Submit('submit', _('Edit'), css_class='btn btn-warning mt-2')
+        )
+
+        self.helper = helper.FormHelper()
+        self.helper.form_class = 'form-inline w-75'
+        self.helper.form_method = 'post'
+        self.helper.layout = layout.Layout(
+            notification_category_field,
+            layout.Div(title_field, css_class="mt-3"),
+            layout.Div(text_field, css_class="mt-3"),
+            time_field,
+            notification_periodicity_num_field,
+            dates_type_field,
+            dates_field,
+            submit_button
+        )
     
     def clean(self):
-        request_data = self.request.POST
-        for value in request_data.values():
+            value = self.cleaned_data.get('dates_type')
             if value == 'Every day':
-                if request_data.get('dates'):
+                if self.cleaned_data.get('dates'):
                     raise forms.ValidationError(_("If you want to enter your dates, you should choose `Your own dates`"))
-            if value == 'Your own dates':
-                if not request_data.get('dates'):
+            elif value == 'Your own dates':
+                if not self.cleaned_data.get('dates'):
                     raise forms.ValidationError(_("If you`ve chosen `Your own dates`, please enter your dates in the field `your own dates`"))
-                user_dates = request_data.get('dates').split(',')
+                user_dates = self.cleaned_data.get('dates')
                 for date in user_dates:
                     try:
                         date = datetime.strptime(date, "%Y-%m-%d")
@@ -146,17 +293,17 @@ class NotificationPeriodicEditForm(forms.ModelForm):
             NotificationId.objects.get(notification_id=task).delete()
 
         current_date = timezone.localtime(timezone.now()).date()
-        for value in self.request.POST.values():                       
-            if value == 'Every day':
-                dates = []
-                for _ in range(self.cleaned_data.get('notification_periodicity_num')):
-                    current_date = current_date + timedelta(days=1)
-                    dates.append((current_date))
-                res.dates = dates
-            elif value == 'Your own dates':
-                dates = self.request.POST.get('dates').split(',')
-                dates = sorted(dates, key=lambda x: datetime.strptime(x, '%Y-%m-%d'))
-                res.dates = dates
+        value = self.cleaned_data.get('dates_type')                     
+        if value == 'Every day':
+            dates = []
+            for _ in range(self.cleaned_data.get('notification_periodicity_num')):
+                current_date = current_date + timedelta(days=1)
+                dates.append((current_date))
+            res.dates = dates
+        elif value == 'Your own dates':
+            dates = self.cleaned_data.get('dates')
+            dates = sorted(dates, key=lambda x: datetime.strptime(x, '%Y-%m-%d'))
+            res.dates = dates
         res.save()
 
         return res

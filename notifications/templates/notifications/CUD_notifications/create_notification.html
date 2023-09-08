@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n crispy_forms_tags %}
 
 {% block meta_tags %}
     <meta name="description" content="{% translate 'Creating single notification' %}">
@@ -7,6 +7,17 @@
     <meta property="og:description" content="{% translate 'Creating single notification' %}" />
     <meta property="og:url" content="{% url 'notifications:create_notification' %}" />
 {% endblock meta_tags %}
+
+{% block style %}
+    <style>
+        #div_id_notification_date > div {
+            display: flex;
+        }
+        #id_notification_date_day, #id_notification_date_month, #id_notification_date_year {
+            width: 33%;
+        }    
+    </style>
+{% endblock style %}
 
 {% block title %}{% translate 'Creating single notification' %}{% endblock title %}
 
@@ -19,11 +30,7 @@
         {% else %}
             {% if user.is_subscribed or all_notifications < 10 %}
                 <div>
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">{% translate 'Create' %}</button>
-                    </form>
+                    {% crispy form %}
                 </div>
             {% else %}
                 <h1>{% translate 'To create more notifications, you need to be a sub' %}</h1>

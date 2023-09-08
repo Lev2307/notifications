@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-03 13:10+0000\n"
+"POT-Creation-Date: 2023-09-08 14:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,15 +32,18 @@ msgstr ""
 "wichtig für den korrekten Versand von Benachrichtigungen."
 
 #: authentication/authentication_api/serializers.py:16
-#: authentication/models.py:133
+#: authentication/models.py:133 templates/auth/profile.html:82
 msgid "Timezone"
 msgstr "Zeitzone"
 
 #: authentication/authentication_api/serializers.py:21
+#: authentication/forms.py:26 authentication/forms.py:69
+#: authentication/forms.py:99
 msgid "Password"
 msgstr "Passwort"
 
 #: authentication/authentication_api/serializers.py:26
+#: authentication/forms.py:29
 msgid "Password confirmation"
 msgstr "Passwort Bestätigung"
 
@@ -49,7 +52,7 @@ msgid "Enter the same password as before, for verification."
 msgstr "Geben Sie zur Verifizierung das gleiche Passwort wie zuvor ein."
 
 #: authentication/authentication_api/serializers.py:47
-#: authentication/forms.py:13
+#: authentication/forms.py:57
 msgid "This mail already exists"
 msgstr "Diese E-Mail existiert bereits"
 
@@ -61,15 +64,41 @@ msgstr "Zugriff verweigert: falscher Benutzername oder falsches Passwort."
 msgid "Both \"username\" and \"password\" are required."
 msgstr "Sowohl \"Benutzername\" als auch \"Passwort\" sind erforderlich."
 
-#: authentication/forms.py:24
+#: authentication/forms.py:20 authentication/forms.py:66
+#, fuzzy
+#| msgid "User"
+msgid "Username"
+msgstr "Benutzer"
+
+#: authentication/forms.py:23 authentication/forms.py:96
+msgid "Email"
+msgstr ""
+
+#: authentication/forms.py:34
+msgid "Create account"
+msgstr "Konto erstellen"
+
+#: authentication/forms.py:61
+msgid "Remember me"
+msgstr "Sich an mich erinnern"
+
+#: authentication/forms.py:71 templates/misc/includes/navbar.html:11
+msgid "Log in"
+msgstr "Anmelden"
+
+#: authentication/forms.py:84
 msgid "Your password"
 msgstr "Ihr Passwort"
 
-#: authentication/forms.py:29
+#: authentication/forms.py:89
 msgid "Your new email"
 msgstr "Ihre neue E-Mail"
 
-#: authentication/forms.py:39
+#: authentication/forms.py:101
+msgid "Change mail"
+msgstr "E-Mail ändern"
+
+#: authentication/forms.py:115
 msgid "Your password is wrong or this email already exists"
 msgstr "Ihr Passwort ist falsch oder diese E-Mail existiert bereits"
 
@@ -121,36 +150,36 @@ msgstr "Benutzertg"
 msgid "Your email has been successfully confirmed!"
 msgstr "Ihre E-Mail wurde erfolgreich bestätigt!"
 
-#: authentication/views.py:136
+#: authentication/views.py:137
 msgid "Page not found"
 msgstr "Seite nicht gefunden"
 
-#: config/settings.py:147
+#: config/settings.py:144
 msgid "Russian"
 msgstr "Russisch"
 
-#: config/settings.py:148
+#: config/settings.py:145
 msgid "English"
 msgstr "Englisch"
 
-#: config/settings.py:149
+#: config/settings.py:146
 msgid "German"
 msgstr "Deutsch"
 
-#: config/settings.py:153
+#: config/settings.py:150
 msgid "UTC 00:00 ( for example Reykjavik, Lisbon )"
 msgstr "UTC 00:00 ( zum Beispiel Reykjavik, Lissabon )"
 
-#: config/settings.py:154
+#: config/settings.py:151
 msgid "UTC +01:00 ( for example, London, Dublin )"
 msgstr "UTC +01:00 ( zum Beispiel London, Dublin )"
 
-#: config/settings.py:155
+#: config/settings.py:152
 msgid "UTC +02:00 ( for example, Kaliningrad, Berlin, Paris, Warsaw, Zagreb )"
 msgstr ""
 "UTC +02:00 ( zum Beispiel Kaliningrad, Berlin, Paris, Warschau, Zagreb )"
 
-#: config/settings.py:156
+#: config/settings.py:153
 msgid ""
 "UTC +03:00 ( for example, Moscow, Riga, Saint Petersburg, Minsk, Volgograd, "
 "Kirov )"
@@ -158,23 +187,23 @@ msgstr ""
 "UTC +03:00 ( zum Beispiel Moskau, Riga, Sankt Petersburg, Minsk, Wolgograd, "
 "Kirow )"
 
-#: config/settings.py:157
+#: config/settings.py:154
 msgid "UTC +04:00 ( for example, Baku, Tbilisi, Yerevan, Samara, Ulyanovsk )"
 msgstr "UTC +04:00 ( zum Beispiel Baku, Tiflis, Eriwan, Samara, Uljanowsk )"
 
-#: config/settings.py:158
+#: config/settings.py:155
 msgid "UTC +04:30 ( for example, Kabul )"
 msgstr "UTC +04:30 ( zum Beispiel Kabul )"
 
-#: config/settings.py:159
+#: config/settings.py:156
 msgid "UTC +05:00 ( for example, Yekaterinburg, Tashkent )"
 msgstr "UTC +05:00 ( zum Beispiel Jekaterinburg, Taschkent )"
 
-#: config/settings.py:160
+#: config/settings.py:157
 msgid "UTC +06:00 ( for example, Almaty, Omsk, Bishkek )"
 msgstr "UTC +06:00 ( zum Beispiel Almaty, Omsk, Bischkek )"
 
-#: config/settings.py:161
+#: config/settings.py:158
 msgid ""
 "UTC +07:00 ( for example, Novosibirsk, Krasnoyarsk, Novokuznetsk, Bangkok, "
 "Hanoi, Jakarta )"
@@ -182,59 +211,68 @@ msgstr ""
 "UTC +07:00 ( zum Beispiel Nowosibirsk, Krasnojarsk, Nowokusnezk, Bangkok, "
 "Hanoi, Jakarta )"
 
-#: config/settings.py:162
+#: config/settings.py:159
 msgid "UTC +08:00 ( for example, Irkutsk, Beijing, Hong Kong, Singapore )"
 msgstr "UTC +08:00 ( zum Beispiel Irkutsk, Peking, Hongkong, Singapur )"
 
-#: config/settings.py:163
+#: config/settings.py:160
 msgid "UTC +09:00 ( for example, Yakutsk, Tokyo, Osaka )"
 msgstr "UTC +09:00 ( zum Beispiel Jakutsk, Tokio, Osaka )"
 
-#: config/settings.py:164
+#: config/settings.py:161
 msgid "UTC +10:00 ( for example, Vladivostok, Canberra, Melbourne, Sydney )"
 msgstr "UTC +10:00 ( zum Beispiel Wladiwostok, Canberra, Melbourne, Sydney )"
 
-#: config/settings.py:165
+#: config/settings.py:162
 msgid "UTC +11:00 ( for example, Magadan, Solomon Islands, New Caledonia )"
 msgstr "UTC +11:00 ( zum Beispiel Magadan, Salomonen, Neukaledonien)"
 
-#: config/settings.py:166
+#: config/settings.py:163
 msgid "UTC +12:00 ( for example, Fiji Islands, Kamchatka, Marshall Islands )"
 msgstr ""
 "UTC +12:00 ( zum Beispiel Fidschi-Inseln, Kamtschatka, Marshallinseln )"
 
-#: config/settings.py:167
+#: config/settings.py:164
 msgid "UTC -05:00 ( Eastern US )"
 msgstr "UTC -05:00 ( Osten der USA )"
 
-#: config/settings.py:168
+#: config/settings.py:165
 msgid "UTC -06:00 ( for example, Central America )"
 msgstr "UTC -06:00 ( zum Beispiel Mittelamerika )"
 
-#: config/settings.py:169
+#: config/settings.py:166
 msgid "UTC -07:00 ( for example, Arizona )"
 msgstr "UTC -07:00 ( zum Beispiel Arizona )"
 
-#: config/settings.py:170
+#: config/settings.py:167
 msgid "UTC -08:00 ( for example, Alaska )"
 msgstr "UTC -08:00 ( zum Beispiel Alaska )"
 
-#: config/settings.py:171
+#: config/settings.py:168
 msgid "UTC -10:00 ( for example, Hawaii )"
 msgstr "UTC -10:00 ( zum Beispiel Hawaii )"
 
-#: notification_categories/forms.py:12 notification_categories/forms.py:32
+#: notification_categories/forms.py:14 notification_categories/forms.py:23
+#: notification_categories/forms.py:53 notification_categories/forms.py:62
 #: notification_categories/models.py:15
 msgid "Category name"
 msgstr "Kategoriename"
 
-#: notification_categories/forms.py:25 notification_categories/forms.py:45
+#: notification_categories/forms.py:28
+msgid "Create category"
+msgstr "Kategorie erstellen"
+
+#: notification_categories/forms.py:46 notification_categories/forms.py:86
 msgid ""
 "Choose a different color or a different name for the notification type as it "
 "already exists"
 msgstr ""
 "Wählen Sie eine andere Farbe oder einen anderen Namen für den "
 "Benachrichtigungstyp, da er bereits vorhanden ist"
+
+#: notification_categories/forms.py:67
+msgid "Edit category"
+msgstr "Kategorie bearbeiten"
 
 #: notification_categories/models.py:12 notifications/models.py:84
 msgid "User"
@@ -244,43 +282,82 @@ msgstr "Benutzer"
 msgid "Color"
 msgstr "Farbig"
 
-#: notifications/forms.py:15 notifications/forms.py:41
-#: notifications/forms.py:69 notifications/forms.py:104
+#: notifications/forms.py:15 notifications/forms.py:70
+#: notifications/forms.py:125 notifications/forms.py:203
 #: notifications/models.py:129 notifications/models.py:207
 #: notifications/send_notifications.py:20
 #: notifications/send_notifications.py:36
 msgid "Category"
 msgstr "Zimmerkategorie"
 
-#: notifications/forms.py:16 notifications/forms.py:42
+#: notifications/forms.py:16 notifications/forms.py:71
 #: notifications/models.py:218
 msgid "Date"
 msgstr "Datum"
 
-#: notifications/forms.py:17 notifications/forms.py:43
+#: notifications/forms.py:17 notifications/forms.py:72
 #: notifications/models.py:149 notifications/models.py:222
 #: notifications/send_notifications.py:23
 #: notifications/send_notifications.py:39
 msgid "Time"
 msgstr "Zeit"
 
-#: notifications/forms.py:38 notifications/forms.py:66
+#: notifications/forms.py:33 notifications/forms.py:88
+#: notifications/forms.py:153 notifications/models.py:132
+#: notifications/models.py:210 notifications/send_notifications.py:21
+#: notifications/send_notifications.py:37
+msgid "Title"
+msgstr "Titelleiste"
+
+#: notifications/forms.py:36 notifications/forms.py:91
+#: notifications/forms.py:156 notifications/models.py:136
+#: notifications/models.py:214 notifications/send_notifications.py:22
+#: notifications/send_notifications.py:38
+msgid "Text"
+msgstr "Text"
+
+#: notifications/forms.py:41 notifications/forms.py:168
+msgid "Create"
+msgstr "Erstellen"
+
+#: notifications/forms.py:67 notifications/forms.py:122
 #: notifications/notifications_api/serializers.py:36
 msgid "Notification date cannot be in the past!!!"
 msgstr "Das Benachrichtigungsdatum darf nicht in der Vergangenheit liegen!!!"
 
-#: notifications/forms.py:70 notifications/forms.py:105
+#: notifications/forms.py:96 templates/auth/profile.html:33
+#: templates/notifications/CUD_notifications/edit_notification_periodic.html:33
+#: templates/notifications/detail/notification_periodic_detail.html:25
+#: templates/notifications/detail/notification_single_detail.html:25
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: notifications/forms.py:126 notifications/forms.py:204
 #: notifications/models.py:145
 msgid "Number of repetitions"
 msgstr "Anzahl der Wiederholungen"
 
-#: notifications/forms.py:90 notifications/forms.py:126
+#: notifications/forms.py:128
+msgid "Select dates"
+msgstr "Termine auswählen"
+
+#: notifications/forms.py:129
+#: templates/notifications/CUD_notifications/edit_notification_periodic.html:25
+msgid "Every day"
+msgstr "Täglich"
+
+#: notifications/forms.py:129
+#: templates/notifications/CUD_notifications/edit_notification_periodic.html:29
+msgid "Your own dates"
+msgstr "Ihre eigenen Termine"
+
+#: notifications/forms.py:189 notifications/forms.py:225
 #: notifications/notifications_api/serializers.py:51
 msgid "If you want to enter your dates, you should choose `Your own dates`"
 msgstr ""
 "Wenn Sie Ihre Daten eingeben möchten, sollten Sie `Ihre eigenen Daten` wählen"
 
-#: notifications/forms.py:93 notifications/forms.py:129
+#: notifications/forms.py:192 notifications/forms.py:228
 msgid ""
 "If you`ve chosen `Your own dates`, please enter your dates in the field "
 "`your own dates`"
@@ -288,12 +365,12 @@ msgstr ""
 "Wenn Sie `Ihre eigenen Daten' gewählt haben, geben Sie bitte Ihre Daten in "
 "das Feld `Ihre eigenen Daten` ein"
 
-#: notifications/forms.py:99 notifications/forms.py:135
+#: notifications/forms.py:198 notifications/forms.py:234
 #: notifications/notifications_api/serializers.py:60
 msgid "ENTER DATES IN APPROPRIATE FORMAT"
 msgstr "GEBEN SIE DATEN IM GEEIGNETEN FORMAT EIN"
 
-#: notifications/forms.py:101 notifications/forms.py:137
+#: notifications/forms.py:200 notifications/forms.py:236
 #: notifications/notifications_api/serializers.py:63
 msgid ""
 "This date {date.date()} is too late. Please enter a date no later than 2040 "
@@ -326,18 +403,6 @@ msgstr "Tasks"
 #: notifications/models.py:97
 msgid "Notification"
 msgstr "Benachrichtigung"
-
-#: notifications/models.py:132 notifications/models.py:210
-#: notifications/send_notifications.py:21
-#: notifications/send_notifications.py:37
-msgid "Title"
-msgstr "Titelleiste"
-
-#: notifications/models.py:136 notifications/models.py:214
-#: notifications/send_notifications.py:22
-#: notifications/send_notifications.py:38
-msgid "Text"
-msgstr "Text"
 
 #: notifications/models.py:158 notifications/models.py:237
 msgid "Notification type"
@@ -408,11 +473,7 @@ msgstr "Ändern"
 msgid "Changing mail"
 msgstr "E-Mail ändern"
 
-#: templates/auth/change_user_email.html:15
-msgid "Change mail"
-msgstr "E-Mail ändern"
-
-#: templates/auth/change_user_email.html:20
+#: templates/auth/change_user_email.html:16
 msgid "You need to purchase a subscription to change your mail"
 msgstr "Sie müssen ein Abonnement erwerben, um Ihre E-Mail-Adresse zu ändern"
 
@@ -509,15 +570,15 @@ msgstr ""
 msgid "Login Page"
 msgstr "Anmeldeseite"
 
-#: templates/auth/login.html:23
+#: templates/auth/login.html:19
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
 
-#: templates/auth/login.html:25 templates/misc/includes/navbar.html:11
-msgid "Log in"
-msgstr "Anmelden"
+#: templates/auth/login.html:21
+msgid "Don`t have an account"
+msgstr "Ich habe noch kein Konto"
 
-#: templates/auth/login.html:27
+#: templates/auth/login.html:21
 msgid "Register"
 msgstr "Registrieren"
 
@@ -528,14 +589,6 @@ msgstr "Sie sind bei uns seit:"
 #: templates/auth/profile.html:27
 msgid "Your categories:"
 msgstr "Ihre Kategorien:"
-
-#: templates/auth/profile.html:33
-#: templates/notifications/CUD_notifications/edit_notification.html:22
-#: templates/notifications/CUD_notifications/edit_notification_periodic.html:33
-#: templates/notifications/detail/notification_periodic_detail.html:25
-#: templates/notifications/detail/notification_single_detail.html:25
-msgid "Edit"
-msgstr "Bearbeiten"
 
 #: templates/auth/profile.html:34
 #: templates/notification_categories/delete_notification_category.html:21
@@ -555,9 +608,9 @@ msgstr ""
 "standardmäßig zugewiesen ist."
 
 #: templates/auth/profile.html:44
-#: templates/notification_categories/add_new_notification_category.html:7
-#: templates/notification_categories/add_new_notification_category.html:9
-#: templates/notification_categories/add_new_notification_category.html:13
+#: templates/notification_categories/add_new_notification_category.html:6
+#: templates/notification_categories/add_new_notification_category.html:8
+#: templates/notification_categories/add_new_notification_category.html:12
 #: templates/notifications/notification_lists/notification_list.html:24
 msgid "Add a new category for notifications"
 msgstr "Fügen Sie eine neue Kategorie für Benachrichtigungen hinzu"
@@ -607,10 +660,6 @@ msgstr "Sprachlich"
 msgid "Registration Page"
 msgstr "Registrierungsseite"
 
-#: templates/auth/registration.html:19
-msgid "Create account"
-msgstr "Konto erstellen"
-
 #: templates/auth/sender_information.html:7
 #: templates/auth/sender_information.html:12
 msgid "Sender information"
@@ -657,10 +706,6 @@ msgstr "Abmelden"
 msgid "Registration"
 msgstr "Registrierung"
 
-#: templates/notification_categories/add_new_notification_category.html:22
-msgid "Create category"
-msgstr "Kategorie erstellen"
-
 #: templates/notification_categories/delete_notification_category.html:6
 #: templates/notification_categories/delete_notification_category.html:8
 #: templates/notification_categories/delete_notification_category.html:12
@@ -678,17 +723,13 @@ msgstr ""
 msgid "Editing notification category"
 msgstr "Benachrichtigungskategorie bearbeiten"
 
-#: templates/notification_categories/edit_notification_category.html:21
-msgid "Edit category"
-msgstr "Kategorie bearbeiten"
-
 #: templates/notifications/CUD_notifications/create_notification.html:5
 #: templates/notifications/CUD_notifications/create_notification.html:7
-#: templates/notifications/CUD_notifications/create_notification.html:11
+#: templates/notifications/CUD_notifications/create_notification.html:22
 msgid "Creating single notification"
 msgstr "Einzelmeldung erstellen"
 
-#: templates/notifications/CUD_notifications/create_notification.html:18
+#: templates/notifications/CUD_notifications/create_notification.html:29
 #: templates/notifications/CUD_notifications/create_periodical_notification.html:18
 msgid ""
 "Before you can create a notification, you need to connect one of your "
@@ -697,18 +738,13 @@ msgstr ""
 "Bevor Sie eine Benachrichtigung erstellen können, müssen Sie eines Ihrer "
 "Netzwerke verbinden"
 
-#: templates/notifications/CUD_notifications/create_notification.html:18
+#: templates/notifications/CUD_notifications/create_notification.html:29
 #: templates/notifications/CUD_notifications/create_periodical_notification.html:18
 msgid "Connect"
 msgstr "Verbinden"
 
-#: templates/notifications/CUD_notifications/create_notification.html:25
-#: templates/notifications/CUD_notifications/create_periodical_notification.html:36
-msgid "Create"
-msgstr "Erstellen"
-
-#: templates/notifications/CUD_notifications/create_notification.html:29
-#: templates/notifications/CUD_notifications/create_periodical_notification.html:40
+#: templates/notifications/CUD_notifications/create_notification.html:36
+#: templates/notifications/CUD_notifications/create_periodical_notification.html:25
 msgid "To create more notifications, you need to be a sub"
 msgstr "Um weitere Benachrichtigungen zu erstellen, müssen Sie ein Sub sein"
 
@@ -717,16 +753,6 @@ msgstr "Um weitere Benachrichtigungen zu erstellen, müssen Sie ein Sub sein"
 #: templates/notifications/CUD_notifications/create_periodical_notification.html:11
 msgid "Creating periodic notification"
 msgstr "Periodische Benachrichtigung erstellen"
-
-#: templates/notifications/CUD_notifications/create_periodical_notification.html:28
-#: templates/notifications/CUD_notifications/edit_notification_periodic.html:25
-msgid "Every day"
-msgstr "Täglich"
-
-#: templates/notifications/CUD_notifications/create_periodical_notification.html:32
-#: templates/notifications/CUD_notifications/edit_notification_periodic.html:29
-msgid "Your own dates"
-msgstr "Ihre eigenen Termine"
 
 #: templates/notifications/CUD_notifications/delete_notification_periodic.html:6
 #: templates/notifications/CUD_notifications/delete_notification_periodic.html:8
@@ -747,7 +773,7 @@ msgstr "Einzelne Benachrichtigung löschen"
 
 #: templates/notifications/CUD_notifications/edit_notification.html:6
 #: templates/notifications/CUD_notifications/edit_notification.html:8
-#: templates/notifications/CUD_notifications/edit_notification.html:13
+#: templates/notifications/CUD_notifications/edit_notification.html:24
 msgid "Editing single notification"
 msgstr "Einzelne Benachrichtigung bearbeiten"
 

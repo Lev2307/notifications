@@ -9,11 +9,7 @@
         {% if is_subscribed %}
             <h1>{% translate 'Changing mail' %}</h1>
             <div>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">{% translate 'Change mail' %}</button>
-                </form>
+                {% crispy form %}
             </div>
         {% else %}
             <div>

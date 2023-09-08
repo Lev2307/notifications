@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
-{% load i18n %}
-
+{% load i18n crispy_forms_tags %}
 
 {% block meta_tags %}
     <meta name="description" content="{% translate 'Add a new category for notifications' %}">
@@ -16,11 +15,7 @@
 <section>
     {% include 'misc/includes/navbar.html' with user=user %}
     <div>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">{% translate 'Create category' %}</button>
-        </form>
+        {% crispy form %}
     </div>
 </section>
 {% endblock content %}

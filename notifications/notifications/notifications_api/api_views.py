@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language
 
 from rest_framework import generics, status
 from rest_framework.decorators import APIView
@@ -396,7 +397,7 @@ class ChangeNotificationStatusFromRevokeToIncompleteApi(APIView):
             if notification_status.time_stamp > timezone.localtime(timezone.now()):
                 notification_status.done = 0 # incomplited
                 notification_status.save()
-                task = create_periodic_notification_task.apply_async(args=(notification_periodic_model.id, notification_status.id), eta=notification_status.time_stamp)
+                task = create_periodic_notification_task.apply_async(args=(notification_periodic_model.id, notification_status.id, get_language()), eta=notification_status.time_stamp)
                 notification_celery_id.notification_id = task
                 notification_celery_id.save()
             return Response(status=status.HTTP_200_OK)

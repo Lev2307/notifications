@@ -22,7 +22,7 @@
         {% endfor %}
         <form action="" method="post">
             {% csrf_token %}
-            <button type="submit">{% translate 'Revoke' %}</button>
+            <button class="btn btn-danger" type="submit">{% translate 'Revoke' %}</button>
         </form>
     </section>
 {% endblock content %}

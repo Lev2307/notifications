@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load i18n %}
+{% load i18n crispy_forms_tags %}
 
 {% block meta_tags %}
     <meta name="description" content="{% translate 'Login Page' %}" />
@@ -14,17 +14,11 @@
 {% block content %}
     <section>
         <div>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="form_wrapper">
-                    {{ form.as_p }}
-                </div>
-                <div class="forgot">
-                    <a class="forgot_password" href="{% url 'auth:password_reset' %}">{% translate 'Forgot password?' %}</a>
-                </div>
-                <button type="submit">{% translate 'Log in' %}</button>
-            </form>
-            <span>Don`t have an account?<a href="{% url 'auth:registration' %}">{% translate 'Register' %}</a></span>
+            {% crispy form %}
+            <div class="forgot mt-2">
+                <a class="forgot_password" href="{% url 'auth:password_reset' %}">{% translate 'Forgot password?' %}</a>
+            </div>
+            <span>{% translate 'Don`t have an account' %}? <a href="{% url 'auth:registration' %}">{% translate 'Register' %}</a></span>
         </div>
     </section>
 {% endblock content %}
