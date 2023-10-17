@@ -1,24 +1,21 @@
 version: '3.8'
 
 services:
-  web:
-    build: ./notifications
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./notifications/:/app/
-    env_file:
-      - ./.env
+  gunicorn:
+    build: 
+      context: ./notifications
+      dockerfile: Dockerfile
+    restart: always
     ports:
-      - 8000:8000
+      - "8000:8000"
+    env_file: ./.env
     depends_on:
-      - db 
+      - db
       - redis
-  db:
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
   redis:
     image: redis:alpine
   celery:
@@ -39,6 +36,14 @@ services:
       - ./.env
     depends_on:
       - redis
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
 
 volumes:
   postgres_data: 
+  static_volume:
+  media_volume:
