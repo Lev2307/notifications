@@ -1,25 +1,21 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  nginx:
-    build: nginx/
-    ports:
-      - "80:80"
-    volumes:
-      - static_volume:/app/static
-  web:
-    build:
+  gunicorn:
+    build: 
       context: ./notifications
       dockerfile: Dockerfile
-    volumes:
-      - static_volume:/app/static
+    restart: always
     ports:
       - "8000:8000"
-    env_file:
-      - .env
+    env_file: ./.env
     depends_on:
       - db
       - redis
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
   redis:
     image: redis:alpine
   celery:
@@ -48,5 +44,6 @@ services:
       - ./.env
 
 volumes:
-  postgres_data:
+  postgres_data: 
   static_volume:
+  media_volume:

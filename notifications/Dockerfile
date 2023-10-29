@@ -10,10 +10,15 @@ RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev gettext bash
 RUN pip install --upgrade pip 
 
 COPY ./requirements.txt /app/requirements.txt
+COPY ./entrypoint.sh /app/entrypoint.sh
+
+RUN chmod +x /app/entrypoint.sh
 
 RUN pip install -r requirements.txt
 
 COPY . /app/
 
-EXPOSE 8000
-CMD ["gunicorn","--bind", ":8000", "config.wsgi:application"]
+# create static directory
+RUN mkdir static
+
+ENTRYPOINT ["/app/entrypoint.sh"]

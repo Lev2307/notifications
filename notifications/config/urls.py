@@ -49,7 +49,7 @@ urlpatterns = i18n_patterns(
 
     path('auth/', include(('authentication.urls', 'auth'), namespace='auth')),
 
-)  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = 'core.views.not_found_404'
 hhandler500 = 'core.views.server_error_500'
