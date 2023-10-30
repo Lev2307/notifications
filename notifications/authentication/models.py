@@ -133,8 +133,7 @@ class MyUser(AbstractUser):
         _("Timezone"),
         choices=settings.TZ_CHOICES,
         max_length=100,    
-        default=settings.TZ_CHOICES[0][0],
-        help_text=_("If you don`t know your timezone, please google it! This field is important for sending notifications correctly.")
+        help_text=_("If you don`t know your timezone, please google it! This field is important for sending notifications correctly."),
     )
 
     objects = UserManager()

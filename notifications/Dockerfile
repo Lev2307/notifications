@@ -14,7 +14,4 @@ RUN pip install -r requirements.txt
 
 COPY . /app/
 
-# create static directory
-RUN mkdir static
-
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]

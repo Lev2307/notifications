@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import AuthenticationForm
+from django.conf import settings
+
 
 
 from crispy_forms import helper, layout

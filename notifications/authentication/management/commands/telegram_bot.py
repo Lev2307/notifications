@@ -42,7 +42,7 @@ class Command(BaseCommand):
     @bot.callback_query_handler(func=lambda c: c.data == '/adding_telegram')
     def process_callback_adding_telegram(callback_query: types.CallbackQuery):
         bot.answer_callback_query(callback_query.id)
-        bot.send_message(callback_query.from_user.id, f'Чтобы продолжить регистрацию пройдите по [этой ссылке](http://127.0.0.1:8000/auth/telegram?chat_id={callback_query.from_user.id}&username={callback_query.from_user.username})', parse_mode='MarkdownV2')
+        bot.send_message(callback_query.from_user.id, f'Чтобы продолжить регистрацию пройдите по [этой ссылке](http://127.0.0.1/auth/telegram?chat_id={callback_query.from_user.id}&username={callback_query.from_user.username})', parse_mode='MarkdownV2')
     
     @bot.callback_query_handler(func=lambda c: c.data == '/subscribe')
     def process_callback_subscribe_info(callback_query: types.CallbackQuery):
