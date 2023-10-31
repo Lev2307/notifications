@@ -1,19 +1,15 @@
-import pytz
-from django.utils import timezone
-
 from celery import shared_task
 from celery.utils.log import get_task_logger
-
-
 
 logger = get_task_logger(__name__)
 
 @shared_task()
 def create_notification_task(instance_id, lang_code): 
    from .models import NotificationSingle, NotificationStatus
-
-   notif_status_id = NotificationSingle.objects.get(id=instance_id).notification_status.id
+   notification_single = NotificationSingle.objects.get(id=instance_id)
+   notif_status_id = notification_single.notification_status.id
    notification_status = NotificationStatus.objects.get(id=notif_status_id)
+
    if notification_status.done == False:
       notification_status.done = True
       notification_status.save()

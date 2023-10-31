@@ -100,6 +100,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(email=email, password=password, username=username)
         user.is_superuser = True
         user.is_staff = True
+        user.tz = settings.TZ_CHOICES[0][0]
         user.save(using=self._db)
         email = ChooseSendingNotifications.objects.create(sender='email', user=user)
         telegram = ChooseSendingNotifications.objects.create(sender='telegram', user=user)
